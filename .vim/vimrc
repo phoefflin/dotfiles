@@ -52,6 +52,10 @@ call vundle#begin()
   " commenting (gcc)
   Plugin 'tpope/vim-commentary'
 
+  " quoting made simple
+  " --> cs"'
+  Plugin 'tpope/vim-surround'
+
   " Unix helpers:
   " - Remove: Delete a buffer and the file on disk simultaneously.
   " - Unlink: Like :Remove, but keeps the now empty buffer.
@@ -86,7 +90,6 @@ call vundle#begin()
   " SQL Utilities and dependencies
   Plugin 'vim-scripts/SQLUtilities'
   Plugin 'vim-scripts/Align'
-
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
