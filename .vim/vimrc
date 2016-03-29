@@ -35,17 +35,15 @@ call vundle#begin()
   " let Vundle manage Vundle, required
   Plugin 'VundleVim/Vundle.vim'
 
+  " *** Themes
+  Plugin 'NLKNguyen/papercolor-theme'
+
+  " *** Other plugins
   " some sane and secure defaults
   Plugin 'tpope/vim-sensible'
 
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
-  " Enable Powerline fonts for airline
-  " let g:airline_powerline_fonts = 1
-  let g:airline_theme='papercolor'
-  let g:airline#extensions#whitespace#mixed_indent_algo = 1
-  let g:airline#extensions#tabline#enabled = 1
-  set timeoutlen=50       " see https://github.com/vim-airline/vim-airline/wiki/FAQ
 
   " GIT
   Plugin 'tpope/vim-fugitive'
@@ -93,7 +91,6 @@ call vundle#begin()
   " aligning text - see: http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
   Plugin 'godlygeek/tabular.git'
 
-
   " SQL Utilities and dependencies
   Plugin 'vim-scripts/SQLUtilities'
   Plugin 'vim-scripts/Align'
@@ -125,6 +122,20 @@ endif
 "
 "
 " *** Vundle: initial plugin install }}}
+
+" *** UI Settings {{{
+" load my color scheme
+colorscheme PaperColor
+" let g:PaperColor_Light_Override = { 'background' : '#abcdef', 'cursorline' : '#dfdfff', 'matchparen' : '#d6d6d6' , 'comment' : '#8e908c' }
+let g:PaperColor_Light_Override = { 'background' : '#ffffe6' }
+
+" Enable Powerline fonts for airline
+" let g:airline_powerline_fonts = 1
+let g:airline_theme='papercolor'
+let g:airline#extensions#whitespace#mixed_indent_algo = 1
+let g:airline#extensions#tabline#enabled = 1
+set timeoutlen=50       " see https://github.com/vim-airline/vim-airline/wiki/FAQ
+" *** UI Settings }}}
 
 " *** General Settings {{{
 set laststatus=2
