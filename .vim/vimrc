@@ -1,5 +1,6 @@
-" VIM config
+" my VIM config
 
+" disable vi compat mode at first
 set nocompatible
 
 " *** Vundle Initialization / path configuration {{{
@@ -39,6 +40,12 @@ call vundle#begin()
 
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
+  " Enable Powerline fonts for airline
+  " let g:airline_powerline_fonts = 1
+  let g:airline_theme='papercolor'
+  let g:airline#extensions#whitespace#mixed_indent_algo = 1
+  let g:airline#extensions#tabline#enabled = 1
+  set timeoutlen=50       " see https://github.com/vim-airline/vim-airline/wiki/FAQ
 
   " GIT
   Plugin 'tpope/vim-fugitive'
@@ -91,6 +98,12 @@ call vundle#begin()
   Plugin 'vim-scripts/SQLUtilities'
   Plugin 'vim-scripts/Align'
 
+  " Anible-YAML
+  " Plugin 'pearofducks/ansible-vim'
+  Plugin 'chase/vim-ansible-yaml'
+  let g:ansible_options = {'documentation_mapping': '<C-K>'}
+
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " *** Vundle Plugins }}}
@@ -112,19 +125,6 @@ endif
 "
 "
 " *** Vundle: initial plugin install }}}
-
-" *** Vundle: Plugin Settings *** {{{
-"
-" ** AIRLINE ** {{{
-" Enable Powerline fonts for airline
-" let g:airline_powerline_fonts = 1
-let g:airline_theme='papercolor'
-let g:airline#extensions#whitespace#mixed_indent_algo = 1
-let g:airline#extensions#tabline#enabled = 1
-set timeoutlen=50       " see https://github.com/vim-airline/vim-airline/wiki/FAQ
-" ** AIRLINE ** }}}
-
-" }}}
 
 " *** General Settings {{{
 set laststatus=2
