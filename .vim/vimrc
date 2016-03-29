@@ -165,6 +165,9 @@ map     	<BS>
 imap    	<BS>
 map 	<BS>    X
 
+" remove trailing whitespace
+nnoremap <C-w> :%s/\s\+$//gec<CR>
+
 set hlsearch
 set smartcase
 set ignorecase
