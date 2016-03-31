@@ -1,7 +1,9 @@
 " my VIM config
 
 " disable vi compat mode at first
-set nocompatible
+set nocompatible " required for Vundle
+filetype off     " required for Vundle
+
 
 " *** Vundle Initialization / path configuration {{{
 let g:do_vundle_plugin_install = 0
@@ -96,6 +98,13 @@ call vundle#begin()
   Plugin 'vim-scripts/SQLUtilities'
   Plugin 'vim-scripts/Align'
 
+  " Ruby
+  Plugin 'vim-ruby/vim-ruby'
+
+  """"""" JavaScript
+  Plugin 'elzr/vim-json'
+  Plugin 'jelera/vim-javascript-syntax'
+
   " Anible-YAML
   " Plugin 'pearofducks/ansible-vim'
   Plugin 'chase/vim-ansible-yaml'
@@ -143,7 +152,7 @@ let g:airline_theme='solarized'
 " *** }}}
 
 " Enable Powerline fonts for airline
-" let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline#extensions#tabline#enabled = 1
 set timeoutlen=50       " see https://github.com/vim-airline/vim-airline/wiki/FAQ
