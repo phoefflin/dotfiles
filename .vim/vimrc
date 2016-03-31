@@ -37,6 +37,7 @@ call vundle#begin()
 
   " *** Themes
   Plugin 'NLKNguyen/papercolor-theme'
+  Plugin 'altercation/vim-colors-solarized'
 
   " *** Other plugins
   " some sane and secure defaults
@@ -124,14 +125,25 @@ endif
 " *** Vundle: initial plugin install }}}
 
 " *** UI Settings {{{
+"
 " load my color scheme
-colorscheme PaperColor
-" let g:PaperColor_Light_Override = { 'background' : '#abcdef', 'cursorline' : '#dfdfff', 'matchparen' : '#d6d6d6' , 'comment' : '#8e908c' }
-let g:PaperColor_Light_Override = { 'background' : '#ffffe6' }
+"
+" *** color scheme PaperColor * DISABLED {{{
+" colorscheme PaperColor
+" " let g:PaperColor_Light_Override = { 'background' : '#abcdef', 'cursorline' : '#dfdfff', 'matchparen' : '#d6d6d6' , 'comment' : '#8e908c' }
+" let g:PaperColor_Light_Override = { 'background' : '#ffffe6' }
+" let g:airline_theme='papercolor'
+" *** color scheme PaperColor }}}
+
+" *** color scheme Solarized {{{
+colorscheme solarized
+let g:solarized_termcolors=256
+set background=light
+let g:airline_theme='solarized'
+" *** }}}
 
 " Enable Powerline fonts for airline
 " let g:airline_powerline_fonts = 1
-let g:airline_theme='papercolor'
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline#extensions#tabline#enabled = 1
 set timeoutlen=50       " see https://github.com/vim-airline/vim-airline/wiki/FAQ
@@ -166,7 +178,7 @@ imap    	<BS>
 map 	<BS>    X
 
 " remove trailing whitespace
-nnoremap <C-w> :%s/\s\+$//gec<CR>
+" nnoremap <C-w> :%s/\s\+$//gec<CR>
 
 set hlsearch
 set smartcase
