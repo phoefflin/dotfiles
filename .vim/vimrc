@@ -4,7 +4,6 @@
 set nocompatible " required for Vundle
 filetype off     " required for Vundle
 
-
 " *** Vundle Initialization / path configuration {{{
 let g:do_vundle_plugin_install = 0
 if filereadable( $X_VIM_BASE . "/vimrc" )
@@ -110,6 +109,8 @@ call vundle#begin()
   Plugin 'chase/vim-ansible-yaml'
   let g:ansible_options = {'documentation_mapping': '<C-K>'}
 
+  " tmux integration
+  Plugin 'christoomey/vim-tmux-navigator'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -146,13 +147,14 @@ endif
 
 " *** color scheme Solarized {{{
 colorscheme solarized
-let g:solarized_termcolors=256
+" let g:solarized_termcolors=256
 set background=light
 let g:airline_theme='solarized'
 " *** }}}
 
 " Enable Powerline fonts for airline
 let g:airline_powerline_fonts = 1
+" set encoding=utf-8
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline#extensions#tabline#enabled = 1
 set timeoutlen=50       " see https://github.com/vim-airline/vim-airline/wiki/FAQ
@@ -222,6 +224,7 @@ set smarttab " Smarter tab levels
 set mouse-=a   " Disable mouse
 set mousehide  " Hide mouse after chars typed
 set splitright
+set splitbelow
 
 set     nowrap          		" Zeilen nicht automatisch umbrechen
 
@@ -234,6 +237,25 @@ endif
 
 
 " *** General Settings }}}
+
+" *** TEST Settings {{{
+" Leader-based shortcuts {{{
+" Source: http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+" Type <Space>o to open a new file
+nnoremap <Leader>o :CtrlP<CR>
+" Type <Space>w to save file
+nnoremap <Leader>w :w<CR>
+" Copy & paste to system clipboard with <Space>p and <Space>y
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+" Enter visual line mode
+nmap <Leader><Leader> V
+"}}}
+" *** }}}
 
 " *** Filetype / autocmd {{{
 au 	BufNewFile,BufRead,StdinReadPost * 	 		if getline(1) =~? "<?php" | set ft=php | endif
@@ -256,6 +278,12 @@ if bufwinnr(1)
   noremap <S-Right> <C-W>>3
 endif
 " " *** Window resizing }}}
+
+" split mappings
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " " *** soure local vimrc {{{
 if filereadable(expand("~/.vimrc.local"))
