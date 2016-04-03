@@ -142,7 +142,7 @@ endif
 " colorscheme PaperColor
 " " let g:PaperColor_Light_Override = { 'background' : '#abcdef', 'cursorline' : '#dfdfff', 'matchparen' : '#d6d6d6' , 'comment' : '#8e908c' }
 " let g:PaperColor_Light_Override = { 'background' : '#ffffe6' }
-" let g:airline_theme='papercolor'
+let g:airline_theme='papercolor'
 " *** color scheme PaperColor }}}
 
 " *** color scheme Solarized {{{
@@ -150,6 +150,16 @@ colorscheme solarized
 " let g:solarized_termcolors=256
 set background=light
 let g:airline_theme='solarized'
+" I feel that high contrast gives better readability on subotimal configured
+" terminals - which I unfortunaletly have to deal with frequently
+let g:solarized_contrast="high"
+
+" make sure ToggleBG is mapped - see https://github.com/altercation/vim-colors-solarized/issues/40
+if !exists("*ToggleBG")
+    call togglebg#map("")
+endif
+
+
 " *** }}}
 
 " Enable Powerline fonts for airline
