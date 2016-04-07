@@ -182,6 +182,7 @@ set clipboard=unnamed
 set pastetoggle=<F2>
 
 set scrolloff=3         " Always keep <x> lines above/below the cursor
+set sidescrolloff=5
 
 set showmatch  " Show matching brackets.
 set matchtime=5  " Bracket blinking.
@@ -204,7 +205,11 @@ set mousehide  " Hide mouse after chars typed
 set splitright
 set splitbelow
 
+set timeoutlen=1200     " A little bit more time for macros
+set ttimeoutlen=100    
+
 set     nowrap          		" Zeilen nicht automatisch umbrechen
+set lazyredraw
 
 " backup settings
 set     backup
@@ -235,10 +240,22 @@ nmap <Leader><Leader> V
 "}}}
 " *** }}}
 
-" *** Filetype / autocmd {{{
+" *** autocmd {{{
 au 	BufNewFile,BufRead,StdinReadPost * 	 		if getline(1) =~? "<?php" | set ft=php | endif
 au 	BufNewFile,BufRead,StdinReadPost * 	 		if getline(1) =~? "<?python" | set ft=python | endif
-" *** Filetype / autocmd }}}
+
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+" Also don't do it when the mark is in the first line, that is the default
+" position when opening a file.
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
+
+" *** autocmd }}}
 
 " *** Sudoedit Security {{{
 if !empty($SUDO_USER) && $USER !=# $SUDO_USER
@@ -291,7 +308,6 @@ let g:airline_powerline_fonts = 1
 " set encoding=utf-8
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline#extensions#tabline#enabled = 1
-" set timeoutlen=50       " see https://github.com/vim-airline/vim-airline/wiki/FAQ
 let g:airline#extensions#tabline#fnamemod = ':t'
 " *** UI Settings }}}
 
