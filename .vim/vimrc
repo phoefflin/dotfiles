@@ -47,6 +47,10 @@ call vundle#begin()
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
 
+  " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
+  Plugin 'ctrlpvim/ctrlp.vim'
+  let g:ctrlp_working_path_mode = 'ar'
+
   " GIT
   Plugin 'tpope/vim-fugitive'
 
