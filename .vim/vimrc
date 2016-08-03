@@ -168,6 +168,9 @@ map     	<BS>
 imap    	<BS>
 map 	<BS>    X
 
+" filename patterns to ignore on filename expansion (like CTRLP)
+set wildignore+=*~,*.swp,*.o,*.so,*.git,*.hg,*.svn,*.tmp,*.DS_Store
+
 " remove trailing whitespace
 " nnoremap <C-w> :%s/\s\+$//gec<CR>
 
