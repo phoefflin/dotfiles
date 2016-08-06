@@ -1,0 +1,3 @@
+! map caps lock to esc while leaving esc untouched)
+remove Lock = Caps_Lock
+keysym Caps_Lock = Escape
