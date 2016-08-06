@@ -223,9 +223,20 @@ set     backupdir=/var/tmp/vimtmp-$USER
 if ( !isdirectory( &backupdir ))
   silent exe ":!mkdir " . &backupdir . " && chmod 777 ". &backupdir
 endif
-
-
 " *** General Settings }}}
+
+" *** helper functions {{{
+" search parent directories for cscope dbs and add them
+function! LoadCscope()
+  let db = findfile("cscope.out", ".;")
+  if (!empty(db))
+    let path = strpart(db, 0, match(db, "/cscope.out$"))
+    set nocscopeverbose " suppress 'duplicate connection' error
+    exe "cs add " . db . " " . path
+    set cscopeverbose
+  endif
+endfunction
+" *** helper functions }}}
 
 " *** TEST Settings {{{
 " Leader-based shortcuts {{{
@@ -249,7 +260,7 @@ nmap <Leader><Leader> V
 " *** autocmd {{{
 au 	BufNewFile,BufRead,StdinReadPost * 	 		if getline(1) =~? "<?php" | set ft=php | endif
 au 	BufNewFile,BufRead,StdinReadPost * 	 		if getline(1) =~? "<?python" | set ft=python | endif
-
+au 	FileType c,cpp,lex,yacc					call LoadCscope()
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
