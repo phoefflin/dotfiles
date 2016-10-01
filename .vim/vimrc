@@ -138,93 +138,6 @@ endif
 "
 " *** Vundle: initial plugin install }}}
 
-" *** General Settings {{{
-syntax on                             " enable syntax
-filetype plugin indent on             " Automatically detect file types.
-"
-set laststatus=2
-set noshowmode
-set showtabline=1	" show tabs only if there are multiple tabs
-set guioptions-=e
-
-" treat .md as Markdown
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
-set autoindent
-set cindent
-set cinoptions=:s,ps,ts,cs
-set cinwords=if,else,while,do,for,switch,case
-
-set autoread
-set noautowrite         " don't Automatically save before commands like :next and :make
-set hidden              " enable hidden modified buffers
-set cmdheight=2
-set backspace=indent,eol,start  " more powerful backspacing
-"       mit <BS> auch im Normalmodus Zeichen vor Cursor löschen.
-" 	(whichwrap+=h,l ist nötig , damit map <BS> 'X' funktioniert auch am Zeilenanfang funktioniert)
-set 	whichwrap=b,s,h,l,<,>,[,]
-" Backspace-Mappings
-map     	<BS>
-imap    	<BS>
-map 	<BS>    X
-
-" filename patterns to ignore on filename expansion (like CTRLP)
-set wildignore+=*~,*.swp,*.o,*.so,*.git,*.hg,*.svn,*.tmp,*.DS_Store
-
-" remove trailing whitespace
-" nnoremap <C-w> :%s/\s\+$//gec<CR>
-
-set hlsearch
-set smartcase
-set ignorecase
-
-set foldmethod=marker
-set foldopen+=jump
-
-set incsearch       " Incremental search
-set laststatus=2    " Always show status line
-set lazyredraw
-set linebreak
-set clipboard=unnamed
-set pastetoggle=<F2>
-
-set scrolloff=3         " Always keep <x> lines above/below the cursor
-set sidescrolloff=5
-
-set showmatch  " Show matching brackets.
-set matchtime=5  " Bracket blinking.
-set noerrorbells  " No noise.
-set vb t_vb= " disable any beeps or flashes on error
-set visualbell
-set virtualedit=block
-
-set showcmd " Display an incomplete command in the lower right corner of the Vim window
-
-" Bash-style tab completion
-set wildmode=longest,list " At command line, complete longest common string, then list alternatives.
-set wildmenu
-
-set modeline
-set smarttab " Smarter tab levels
-
-set mouse-=a   " Disable mouse
-set mousehide  " Hide mouse after chars typed
-set splitright
-set splitbelow
-
-set timeoutlen=1200     " A little bit more time for macros
-set ttimeoutlen=100    
-
-set     nowrap          		" Zeilen nicht automatisch umbrechen
-
-" backup settings
-set     backup
-set     backupdir=/var/tmp/vimtmp-$USER
-if ( !isdirectory( &backupdir ))
-  silent exe ":!mkdir " . &backupdir . " && chmod 777 ". &backupdir
-endif
-" *** General Settings }}}
-
 " *** helper functions {{{
 " search parent directories for cscope dbs and add them
 function! LoadCscope()
@@ -327,6 +240,102 @@ let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 " *** UI Settings }}}
+
+" *** General Settings {{{
+syntax on                             " enable syntax
+filetype plugin indent on             " Automatically detect file types.
+"
+set laststatus=2
+set noshowmode
+set showtabline=1	" show tabs only if there are multiple tabs
+set guioptions-=e
+
+" treat .md as Markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+set autoindent
+set cindent
+" set cinoptions=:s,ps,ts,cs
+set cinoptions=:0,l1,t0,g0,(0
+set cinwords=if,else,while,do,for,switch,case
+
+set autoread
+set noautowrite         " don't Automatically save before commands like :next and :make
+set hidden              " enable hidden modified buffers
+set cmdheight=2
+set backspace=indent,eol,start  " more powerful backspacing
+"       mit <BS> auch im Normalmodus Zeichen vor Cursor löschen.
+" 	(whichwrap+=h,l ist nötig , damit map <BS> 'X' funktioniert auch am Zeilenanfang funktioniert)
+set 	whichwrap=b,s,h,l,<,>,[,]
+" Backspace-Mappings
+map     	<BS>
+imap    	<BS>
+map 	<BS>    X
+
+" filename patterns to ignore on filename expansion (like CTRLP)
+set wildignore+=*~,*.swp,*.o,*.so,*.git,*.hg,*.svn,*.tmp,*.DS_Store
+
+set hlsearch
+set smartcase
+set ignorecase
+
+set foldmethod=marker
+set foldopen+=jump
+
+set incsearch       " Incremental search
+set laststatus=2    " Always show status line
+set lazyredraw
+set linebreak
+set clipboard=unnamed
+set pastetoggle=<F2>
+
+set scrolloff=3         " Always keep <x> lines above/below the cursor
+set sidescrolloff=5
+
+set showmatch  " Show matching brackets.
+set matchtime=5  " Bracket blinking.
+set noerrorbells  " No noise.
+set vb t_vb= " disable any beeps or flashes on error
+set visualbell
+set virtualedit=block
+
+set showcmd " Display an incomplete command in the lower right corner of the Vim window
+
+" Bash-style tab completion
+set wildmode=longest,list " At command line, complete longest common string, then list alternatives.
+set wildmenu
+
+set modeline
+set smarttab " Smarter tab levels
+
+set mouse-=a   " Disable mouse
+set mousehide  " Hide mouse after chars typed
+set splitright
+set splitbelow
+
+set timeoutlen=1200     " A little bit more time for macros
+set ttimeoutlen=100
+
+set     nowrap          		" Zeilen nicht automatisch umbrechen
+
+" backup settings
+set     backup
+if ( isdirectory( "/var/tmp" ))
+  set     backupdir=/var/tmp/vimtmp-$USER
+  if ( !isdirectory( &backupdir ))
+    silent exe ":!mkdir " . &backupdir . " && chmod 777 ". &backupdir
+  endif
+endif
+
+" trailing whitespace
+highlight ExtraWhitespace ctermbg=darkmagenta guibg=darkmagenta
+match ExtraWhitespace /\s\+\%#\@<!$/
+
+" remove trailing whitespace
+" nnoremap <C-w> :%s/\s\+$//gec<CR>
+nnoremap <Leader>w :%s/\s\+$//gec<CR>
+
+" *** General Settings }}}
 
 " " *** soure local vimrc {{{
 if filereadable(expand("~/.vimrc.local"))
