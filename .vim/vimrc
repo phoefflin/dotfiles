@@ -273,7 +273,7 @@ imap    	<BS>
 map 	<BS>    X
 
 " filename patterns to ignore on filename expansion (like CTRLP)
-set wildignore+=*~,*.swp,*.o,*.so,*.git,*.hg,*.svn,*.tmp,*.DS_Store
+set wildignore+=*~,*.swp,*.o,*.so,*.git,*.hg,*.svn,*.tmp,*.DS_Store,*.ko,*.mod.c
 
 set hlsearch
 set smartcase
