@@ -8,11 +8,14 @@
 
 - link:
     # ~/.dotfiles: ''
-    ~/.vim: .vim
+    ~/.bash_profile: .bash_profile
     ~/.bashrc: .bashrc
+    ~/.bashrc.d: .bashrc.d
     ~/.dir_colors: .dir_colors
+    ~/.vim: .vim
     ~/tmux.conf: .tmux.conf
     ~/.gitconfig: .gitconfig
+    ~/bin: bin
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
