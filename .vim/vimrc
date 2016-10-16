@@ -47,12 +47,19 @@ call vundle#begin()
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
 
+  Plugin 'jamessan/vim-gnupg'
+
   " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
   Plugin 'ctrlpvim/ctrlp.vim'
   let g:ctrlp_working_path_mode = 'ar'
 
   " GIT
   Plugin 'tpope/vim-fugitive'
+  Plugin 'scrooloose/syntastic.git'
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 0
+  let g:syntastic_check_on_wq = 0
 
   " general purpose vim library - see plugin from http://vim-scripts.org/vim/scripts.html
   Plugin 'L9'
@@ -174,6 +181,10 @@ nmap <Leader><Leader> V
 au 	BufNewFile,BufRead,StdinReadPost * 	 		if getline(1) =~? "<?php" | set ft=php | endif
 au 	BufNewFile,BufRead,StdinReadPost * 	 		if getline(1) =~? "<?python" | set ft=python | endif
 au 	FileType c,cpp,lex,yacc					call LoadCscope()
+augroup filetypedetect
+  " Mail
+  autocmd BufRead,BufNewFile *mutt-*              setfiletype mail
+augroup END
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -187,13 +198,21 @@ autocmd BufReadPost *
 
 " *** autocmd }}}
 
-" *** Sudoedit Security {{{
+" *** Security (sudo/pass) {{{
+
+" ***** sudoedit {{{
 if !empty($SUDO_USER) && $USER !=# $SUDO_USER
   set viminfo=
   set directory-=~/tmp
   set backupdir-=~/tmp
 endif
-" *** sudoedit security }}}
+" ***** sudoedit }}}
+
+" FIXME: disable swapfile, backup, undo and vimonfo for pass.
+" Following link might help:
+"    https://git.zx2c4.com/password-store/plain/contrib/vim/noplaintext.vim
+
+" *** security }}}
 
 " " *** Window resizing {{{
 if bufwinnr(1)
