@@ -43,6 +43,7 @@ call vundle#begin()
   " *** Other plugins
   " some sane and secure defaults
   Plugin 'tpope/vim-sensible'
+  Plugin 'tpope/vim-unimpaired'
 
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'

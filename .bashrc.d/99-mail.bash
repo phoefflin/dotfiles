@@ -1,5 +1,5 @@
 # basic settings for mail and friends
-$_bashrc_debug "in ${BASH_SOURCE[0]}"
+$_bashrc_debug_echo "in ${BASH_SOURCE[0]}"
 
 # if msmtp-queue is installed: check for unsent mail
 if [ -n "$(type -p msmtp-queue)" ]; then

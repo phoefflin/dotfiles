@@ -1,12 +1,12 @@
 # try to find git-prompt.sh and source it
-$_bashrc_debug "in ${BASH_SOURCE[0]}"
+$_bashrc_debug_echo "in ${BASH_SOURCE[0]}"
 
 for _file in \
     ~/.git-prompt.sh \
     /usr/share/git-core/contrib/completion/git-prompt.sh \
     /usr/share/git/git-prompt.sh; do
 	if [ -f "$_file" ]; then
-		break	
+		break
 	fi
 	_file=
 done

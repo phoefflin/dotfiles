@@ -1,5 +1,5 @@
 # Settings fpr cygwin environments
-$_bashrc_debug "in ${BASH_SOURCE[0]}"
+$_bashrc_debug_echo "in ${BASH_SOURCE[0]}"
 
 case "$(uname)" in
 CYGWIN*)

@@ -1,5 +1,5 @@
 # bash prompt definition
-$_bashrc_debug "in ${BASH_SOURCE[0]}"
+$_bashrc_debug_echo "in ${BASH_SOURCE[0]}"
 
 # define prompt (including git infos)
 if [ -z "$(declare -f -F  __git_ps1)" ]; then

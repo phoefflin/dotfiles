@@ -1,12 +1,17 @@
 # bash config for interactive shells
-_bashrc_debug=:
-# get some debugging infos with:
-# _bashrc_debug="echo INFO: "
+
+# set _bashrc_debug to true to get more debuging output:
+# _bashrc_debug=true
+if ${_bashrc_debug:=false}; then
+	_bashrc_debug_echo="echo INFO: "
+else
+	_bashrc_debug_echo=/bin/true
+fi
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-$_bashrc_debug "in ${BASH_SOURCE[0]}"
+$_bashrc_debug_echo "in ${BASH_SOURCE[0]}"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -55,5 +60,5 @@ if [ -d ~/.bashrc.d ]; then
 fi
 
 # unset debugging helper variable
-unset _bashrc_debug
+unset _bashrc_debug_echo _bashrc_debug
 # vim:ft=sh
