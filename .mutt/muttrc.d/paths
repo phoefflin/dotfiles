@@ -1,0 +1,10 @@
+
+# Paths ----------------------------------------------
+set alias_file       = ~/.mutt/alias_$my_account				# where to store aliases
+set header_cache     = ~/.mutt/cache/$my_account/$my_account_type/headers	# where to store headers
+set message_cachedir = ~/.mutt/cache/$my_account/$my_account_type/bodies	# where to store bodies
+set certificate_file = ~/.mutt/certificates_$my_account				# where to store certs
+set mailcap_path     = ~/.mutt/mailcap						# entries for filetypes
+# set tmpdir         = ~/.mutt/tmp						# where to keep temp files
+# set signature      = ~/.mutt/sig_$my_account					# my signature file
+# vim: ft=muttrc

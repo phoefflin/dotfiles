@@ -13,9 +13,11 @@
     ~/.bashrc.d: .bashrc.d
     ~/.dir_colors: .dir_colors
     ~/.vim: .vim
-    ~/tmux.conf: .tmux.conf
+    ~/.tmux.conf: .tmux.conf
     ~/.gitconfig: .gitconfig
+    ~/.mutt: .mutt
     ~/bin: bin
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - [mkdir -p .mutt/cache]

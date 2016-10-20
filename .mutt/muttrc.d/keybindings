@@ -1,0 +1,23 @@
+
+# ### bind/pager
+# Use 'B' to switch the Sidebar on and off
+bind index,pager B sidebar-toggle-visible
+# Sidebar Navigation ---------------------------------
+bind index,pager <C-Down>   sidebar-next
+bind index,pager <C-Up>     sidebar-prev
+bind index,pager <C-Right>  sidebar-open
+
+# ### pager
+bind pager 'w' previous-page
+bind pager 'j' next-line
+bind pager 'k' previous-line
+bind index '#' tag-entry
+bind index '{' previous-thread
+bind index '}' next-thread
+
+macro index gi "<change-folder>$spoolfile<enter>" "Go to inbox"
+
+# ### editor
+bind editor <space> noop
+
+# vim: ft=muttrc

@@ -1,0 +1,4 @@
+text/html;	w3m -I %{charset} -T text/html; copiousoutput ;
+application/*;	~/.mutt/script/open-attachment %s >/dev/null
+image/*;	~/.mutt/script/open-attachment %s >/dev/null
+text/*;		~/.mutt/script/open-attachment %s >/dev/null

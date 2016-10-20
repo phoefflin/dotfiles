@@ -1,0 +1,17 @@
+# main mutt config
+#
+source ~/.mutt/muttrc.d/general
+source '~/.mutt/muttrc.d/accounts.sh|'
+# path settings depend on used account, therefore this has to be included
+# *after* the account settings.
+source ~/.mutt/muttrc.d/paths
+source ~/.mutt/muttrc.d/gnupg
+source ~/.mutt/muttrc.d/color
+
+# use vi keybindings, provided by neomutt
+# (https://raw.githubusercontent.com/neomutt/neomutt/neomutt/contrib/vim-keybindings/vim-keybindings.rc)
+source ~/.mutt/muttrc.d/keybindings_vi
+# my own extra keybindings
+source ~/.mutt/muttrc.d/keybindings
+
+# vim: ft=muttrc

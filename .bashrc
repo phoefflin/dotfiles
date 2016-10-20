@@ -5,7 +5,7 @@
 if ${_bashrc_debug:=false}; then
 	_bashrc_debug_echo="echo INFO: "
 else
-	_bashrc_debug_echo=/bin/true
+	_bashrc_debug_echo=true
 fi
 
 # If not running interactively, don't do anything

@@ -1,0 +1,20 @@
+
+# ================  IMAPOFFLINE ====================
+set folder       = "~/Maildir"
+set spoolfile    = "+inbox"
+set record       = "+z-sent"
+set postponed    = "+z-drafts"
+set mail_check   = 120
+set timeout      = 0
+set mbox_type	 = Maildir
+set mbox         = $folder
+
+# # source offlineimap generated mailbox list
+source ~/.mutt/cache/imapmailboxes_posteo
+
+# ================  SMTP  ====================
+# mstmp settings
+set sendmail      = ~/bin/msmtpq
+set sendmail_wait = -1
+
+# vim: ft=muttrc
