@@ -4,11 +4,11 @@ set folder       = "~/Maildir"		# WATCH out, s hardcoded in the mailbox line too
 set spoolfile    = "+inbox"
 set record       = "+z-sent"
 set postponed    = "+z-drafts"
+set trash        = "+z-trash"
 set mail_check   = 120
 set timeout      = 0
 set mbox_type	 = Maildir
 set mbox         = $folder
-set my_trash     = "+z-trash"
 
 # # source offlineimap generated mailbox list
 mailboxes `echo -n " "; find ~/Maildir -maxdepth 1 -mindepth 1 -type d -name "*" -printf ' "+%f"'`
