@@ -21,7 +21,7 @@ set folder_format   = "%2C  %d %t %N %f"
 # set pager_format     = "[%4C/%4m] (%S%Z) %%                                                                                                               = %N $i %> [%lL]"
 set pager_format       = "[%Z] [%-20.20n] [%s]%* -- %C/%m (%P)"
 macro pager \cl <pipe-entry>'urlview'<enter> 'Follow links with urlview'
-set pager_index_lines  = 8             # mini index in list view
+set pager_index_lines  = 12            # mini index in list view
 set pager_context      = 3             # number of context lines to show
 set pager_stop         = yes           # don't go to next message automatically
 set markers            = no 	       # no markers in wrapped lines
@@ -30,7 +30,13 @@ auto_view text/html
 
 set sidebar_format     = "%B%?F? [%F]?%* %?N?%N/?%S"
 # set sidebar_short_path = yes
-# set sidebar_visible
+set sidebar_visible
+set sidebar_width = 36
+set sidebar_delim_chars = './'
+set sidebar_divider_char      = '|'
+set sidebar_sort_method  = 'alpha'
+color sidebar_new yellow default
+color sidebar_divider blue default
 
 # set reply_regexp  = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 set sort            = threads
