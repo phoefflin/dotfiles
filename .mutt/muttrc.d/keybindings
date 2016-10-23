@@ -17,6 +17,11 @@ bind index '}' next-thread
 
 macro index gi "<change-folder>$spoolfile<enter>" "Go to inbox"
 
+# move to trash
+macro index,pager D \
+	      	     "<save-message>$my_trash<enter>" \
+	             "move message to the trash"
+
 # ### editor
 bind editor <space> noop
 

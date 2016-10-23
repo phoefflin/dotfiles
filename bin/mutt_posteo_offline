@@ -21,5 +21,13 @@ if [ "$my_account_type" == offline ]; then
 	fi
 fi
 
+# make sure the configured cachedirs exist:
+cachedirs=$(mutt -D 2>/dev/null | egrep "^(header_cache|message_cachedir)=" | sed -e 's/.*="//' -e 's/"$//')
+for dir in $cachedirs; do
+	# eval is needed to resolve '~'
+	eval mkdir -p "$dir"
+done
+unset cachedirs
+
 # execute mutt, disabling aliases/functions
 exec mutt "$@"

@@ -16,6 +16,7 @@
     ~/.tmux.conf: .tmux.conf
     ~/.gitconfig: .gitconfig
     ~/.mutt: .mutt
+    ~/.offlineimaprc: .offlineimaprc
     ~/bin: bin
 
 - shell:

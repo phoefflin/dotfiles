@@ -8,6 +8,7 @@ set fast_reply       = yes
 set include          = yes
 set delete	     = yes
 set new_mail_command = "notify-send 'New Email in %f' '%n new messages, %u unread.' &"
+set mbox_type	     = Maildir
 
 ### --- UI settings ---
 set date_format     = "%d.%m.%Y %H:%M:%S %Z"
