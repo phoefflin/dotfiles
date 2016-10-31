@@ -59,6 +59,10 @@ if [ -d ~/.bashrc.d ]; then
 	unset _file
 fi
 
+if [ -f ~/.bashrc.local ]; then
+	source ~/.bashrc.local
+fi
+
 # unset debugging helper variable
 unset _bashrc_debug_echo _bashrc_debug
 # vim:ft=sh
