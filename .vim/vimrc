@@ -111,6 +111,10 @@ call vundle#begin()
 
   " Ruby
   Plugin 'vim-ruby/vim-ruby'
+  Plugin 'fatih/vim-go'
+  Plugin 'tpope/vim-dispatch'
+  Plugin 'AndrewRadev/splitjoin.vim'
+  Plugin 'SirVer/ultisnips'
 
   """"""" JavaScript
   Plugin 'elzr/vim-json'
@@ -249,8 +253,6 @@ let g:solarized_contrast="medium"
 if !exists("*ToggleBG")
     call togglebg#map("")
 endif
-
-
 " *** }}}
 
 " Enable Powerline fonts for airline
