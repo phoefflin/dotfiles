@@ -1,6 +1,12 @@
 # main mutt config
 #
 source ~/.mutt/muttrc.d/general
+source ~/.mutt/muttrc.d/print
+
+# source ~/.mutt/muttrc.d/notmuch
+# set query_command = "notmuch-addrlookup --mutt '%s'"
+
+
 source '~/.mutt/muttrc.d/accounts.sh|'
 # path settings depend on used account, therefore this has to be included
 # *after* the account settings.

@@ -1,0 +1,11 @@
+
+set print_command="muttprint --nobackground --frontstyle shadowbox \
+		   --date local --date-format '%A, %d. %B %Y %H:%M:%S' \
+		   -P A4 -p TO_FILE:/tmp/muttprint-$USER.ps && \
+		   xdg-open /tmp/muttprint-$USER.ps"
+set print="yes"
+set print_split
+macro index p "<display-toggle-weed> <print-message> <display-toggle-weed> <exit>"
+macro pager p "<display-toggle-weed> <print-message> <display-toggle-weed>"
+
+# vim: ft=muttrc
