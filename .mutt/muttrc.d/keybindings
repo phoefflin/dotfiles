@@ -25,4 +25,5 @@ bind index D purge-message
 # ### editor
 bind editor <space> noop
 
+bind pager,index                \Cr   group-reply
 # vim: ft=muttrc

@@ -2,6 +2,9 @@
 # set account specific variables for mutt config (muttrc.d/accounts.sh) and
 # start offlineimap for the given account if neccesary.
 
+mutt=mutt
+type -p neomutt >/dev/null && mutt=neomutt
+
 # derive account name and type from command/link name: mutt_<acount>_<type>.
 # These are checked in muttrc.d/accounts.h
 base=$(basename $0)
@@ -30,4 +33,4 @@ done
 unset cachedirs
 
 # execute mutt, disabling aliases/functions
-exec mutt "$@"
+exec $mutt "$@"
