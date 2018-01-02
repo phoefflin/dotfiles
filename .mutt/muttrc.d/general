@@ -31,14 +31,20 @@ auto_view text/html
 auto_view text/calendar
 
 set sidebar_format     = "%B%?F? [%F]?%* %?N?%N/?%S"
-# set sidebar_short_path = yes
-# set sidebar_visible
-# set sidebar_width = 36
-# set sidebar_delim_chars = './'
-# set sidebar_divider_char      = '|'
+set sidebar_short_path = no
+set sidebar_visible
+set sidebar_width = 30
+set sidebar_delim_chars = './'
+set sidebar_divider_char      = '|'
 # set sidebar_sort_method  = 'alpha'
-# color sidebar_new yellow default
-# color sidebar_divider blue default
+set sidebar_sort_method  = 'unsorted'
+set sidebar_folder_indent = yes
+set sidebar_indent_string = '  '
+# Enable extended buffy mode to calculate total, new, and flagged
+# message counts for each mailbox.
+set mail_check_stats
+color sidebar_new yellow default
+color sidebar_divider blue default
 
 # set reply_regexp  = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 set sort            = threads
