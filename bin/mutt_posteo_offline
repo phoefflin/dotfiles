@@ -12,17 +12,17 @@ my_account=$(echo -n $base | cut -d _ -f 2)
 my_account_type=$(echo -n $base | cut -d _ -f 3)
 export my_account my_account_type
 
-if [ "$my_account_type" == offline ]; then
-	echo -n "checking/starting offlineimap for account $my_account ... "
-	pid=$(pgrep -u $USER offlineimap)
-	if [ -n "$pid" ]; then
-		echo "already running (pid $pid)"
-	else
-		echo "starting"
-		nohup offlineimap -a $my_account -l ~/.offlineimap.$my_account.log >/dev/null 2>&1 &
-		sleep 1
-	fi
-fi
+# if [ "$my_account_type" == offline ]; then
+# 	echo -n "checking/starting offlineimap for account $my_account ... "
+# 	pid=$(pgrep -u $USER offlineimap)
+# 	if [ -n "$pid" ]; then
+# 		echo "already running (pid $pid)"
+# 	else
+# 		echo "starting"
+# 		nohup offlineimap -a $my_account -l ~/.offlineimap.$my_account.log >/dev/null 2>&1 &
+# 		sleep 1
+# 	fi
+# fi
 
 # make sure the configured cachedirs exist:
 cachedirs=$(mutt -D 2>/dev/null | egrep "^(header_cache|message_cachedir)=" | sed -e 's/.*="//' -e 's/"$//')

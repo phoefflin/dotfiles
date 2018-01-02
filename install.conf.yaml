@@ -17,6 +17,7 @@
     ~/.gitconfig: .gitconfig
     ~/.mutt: .mutt
     ~/.offlineimaprc: .offlineimaprc
+    ~/.mbsyncrc: .mbsyncrc
     ~/.msmtprc: .msmtprc
     ~/bin: bin
 

@@ -1,0 +1,50 @@
+# Settings for isync, a program to syncronise IMAP mailboxes
+# This file defines the syncronisation for two accounts, posteo and work
+# The remote for each account is a server somewhere, and the local is a folder
+# in ~/Maildir
+# Syncronise everything with `mbsync -a`
+
+########################################
+# Default settings
+# Applied to all channels
+########################################
+# CopyArrivalDate yes
+Create Both
+Remove Both
+Expunge Both
+Sync All
+Fsync no
+
+########################################
+# personal account
+########################################
+IMAPAccount posteo
+Host posteo.de
+User p.hoefflin@posteo.de
+PassCmd "pass Mail/posteo"
+Port 143
+SSLType STARTTLS
+SSLVersions TLSv1.2
+
+# Remote storage (where the mail is retrieved from)
+IMAPStore posteo-remote
+Account posteo
+
+# Local storage (where the mail is retrieved to)
+MaildirStore posteo-local
+Path ~/Maildir/posteo/
+Inbox ~/Maildir/posteo/Inbox
+SubFolders Verbatim
+
+Channel posteo-inbox
+Master :posteo-remote:
+Slave :posteo-local:
+Patterns * !old* !list
+
+# Group the channels, so that all channels can be sync'd with `mbsync posteo`
+Group posteo
+Channel posteo-inbox
+# Channel posteo-drafts
+# Channel posteo-sent
+# Channel posteo-trash
+
