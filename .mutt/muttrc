@@ -7,12 +7,14 @@ source ~/.mutt/muttrc.d/print
 # set query_command = "notmuch-addrlookup --mutt '%s'"
 
 
-source '~/.mutt/muttrc.d/accounts.sh|'
+source "~/.mutt/muttrc.d/accounts.sh |"
 # path settings depend on used account, therefore this has to be included
 # *after* the account settings.
 source ~/.mutt/muttrc.d/paths
 source ~/.mutt/muttrc.d/gnupg
 source ~/.mutt/muttrc.d/color
+
+source ~/.mutt/muttrc.d/notmuch
 
 # use vi keybindings, provided by neomutt
 # (https://raw.githubusercontent.com/neomutt/neomutt/neomutt/contrib/vim-keybindings/vim-keybindings.rc)

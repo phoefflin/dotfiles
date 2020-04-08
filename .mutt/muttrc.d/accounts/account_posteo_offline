@@ -11,6 +11,7 @@ set mbox_type	 = Maildir
 set mbox         = $spoolfile
 
 # find all existing mailboxes
+# mailboxes `echo -n " "; find ~/Maildir/posteo  -mindepth 1 -type d  -name "*" ! \( -name "new" -o -name "cur" -o -name "tmp" \) -printf ' "+%P"'`
 mailboxes `echo -n " "; find ~/Maildir/posteo  -mindepth 1 -type d  -name "*" ! \( -name "new" -o -name "cur" -o -name "tmp" \) -printf ' "+%P"'`
 # ================  SMTP  ====================
 # mstmp settings

@@ -9,10 +9,16 @@ set include          = yes
 set delete	     = yes
 set new_mail_command = "notify-send 'New Email in %f' '%n new messages, %u unread.' &"
 # set mbox_type	     = Maildir
+# speed up folder switch
+set sleep_time = 0
 
 ### --- UI settings ---
-set date_format     = "%d.%m.%Y %H:%M:%S %Z"
-set index_format    = "%4C %Z [%D] %-30.30F(%-4.4c) %s"
+# set date_format     = "%d.%m.%Y %H:%M:%S %Z"
+set date_format     = "%d.%m.%Y %H:%M"
+# set date_format     = "%x"
+# set index_format    = "%4C %Z [%D] %-30.30F(%-4.4c) %s"
+set index_format    = "%?M?+& ?%2M %2e %Z [%D] %-28.28L. %s"
+# set index_format="%?M?+& ?%2M %2e %Z %D %-20.20F (%4c) %s"
 set status_chars    = " *%A"
 set status_format   = "───[Folder: %f]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? %<l? %l>]───%>─%?p?( %p postponed )?(%P)───-"
 set folder_format   = "%2C  %d %t %N %f"
@@ -30,28 +36,39 @@ alternative_order text/calendar text/plain text/html # prefer plaintext
 auto_view text/html
 auto_view text/calendar
 
-set sidebar_format     = "%B%?F? [%F]?%* %?N?%N/?%S"
+# set sidebar_format     = "%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N?"
+
 set sidebar_short_path = no
 set sidebar_visible
-set sidebar_width = 32
+set sidebar_width = 18
 set sidebar_delim_chars = './'
-set sidebar_divider_char      = '|'
+set sidebar_divider_char      = "│"
 # set sidebar_sort_method  = 'alpha'
 set sidebar_sort_method  = 'unsorted'
 set sidebar_folder_indent = yes
-set sidebar_indent_string = '  '
+set sidebar_indent_string = ' '
 # Enable extended buffy mode to calculate total, new, and flagged
 # message counts for each mailbox.
-set mail_check_stats
+
+set sidebar_short_path = yes
+# Number of top-level mailbox path subdirectories to truncate for display
+set sidebar_component_depth = 0
+
 color sidebar_new yellow default
 color sidebar_divider blue default
 
 # set reply_regexp  = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 set sort            = threads
-set sort_aux        = reverse-last-date-received
+# set sort_aux        = reverse-last-date-received
+set sort_aux        = last-date-received
 set sort_re         # thread based on regex
-set uncollapse_jump # don't collapse on an unread message
+set sort_browser    = "reverse-date"
+set collapse_unread # don't collapse threads with unread mails
+set uncollapse_jump # jump to unread message when collapsing
 set tilde           # show tildes like in vim
+set   narrow_tree
+folder-hook . "exec collapse-all"
 
 # Headers
 ignore *
@@ -61,7 +78,7 @@ hdr_order from: date: cc: to: subject:
 
 set menu_scroll               = yes   # scroll linewise in menus
 set mail_check_stats          = yes
-set mail_check_stats_interval = 60
+set mail_check_stats_interval = 20
 
 # unmime_lookup			# always use mailcap, also for application/octet-stream
 

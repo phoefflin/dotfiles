@@ -1,5 +1,11 @@
+# text/html;	lynx -dump '%s' >~/.mutt/cache/mail.html && firefox ~/.mutt/cache/mail.html
+# text/html;	firefox '%s';
+# text/html; /usr/lib/htmail-view/wmctrl-wrapper file://%s; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal;
+# text/html; /usr/lib/htmail-view/wmctrl-wrapper file://%s; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal;
+text/html; htmail-decode <%s; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal;
 text/html;	w3m -I %{charset} -T text/html; copiousoutput ;
 text/calendar;  ~/.mutt/script/mutt_ics.py %s; copiousoutput;
 application/*;	~/.mutt/script/open-attachment %s >/dev/null
 image/*;	~/.mutt/script/open-attachment %s >/dev/null
 text/*;		~/.mutt/script/open-attachment %s >/dev/null
+audio/*;	~/.mutt/script/open-attachment %s >/dev/null

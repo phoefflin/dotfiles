@@ -21,6 +21,8 @@ macro index gi "<change-folder>$spoolfile<enter>" "Go to inbox"
 # Bind 'D' to REALLY delete an email
 bind index D purge-message
 
+bind index '-' collapse-thread
+bind index '_' collapse-all
 
 # ### editor
 bind editor <space> noop
