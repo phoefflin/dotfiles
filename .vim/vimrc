@@ -1,279 +1,207 @@
-" my VIM config
 
-" disable vi compat mode at first
-set nocompatible " required for Vundle
-filetype off     " required for Vundle
+let g:statusline_used = "lightline"	" 'lightline', 'airline', dor flagship (default)
 
-" *** Vundle Initialization / path configuration {{{
-let g:do_vundle_plugin_install = 0
+
+if !exists('g:vscode')
+
+" *** vim Plugins {{{
+
+" *** vim-plug config / initialization {{{
+let g:plug_installed = 0
 if filereadable( $X_VIM_BASE . "/vimrc" )
-  set rtp+=$X_VIM_BASE/bundle/Vundle.vim
-  call vundle#rc("$X_VIM_BASE/bundle")
-  if !filereadable( $X_VIM_BASE . "/bundle/Vundle.vim/README.md")
-    echo "Installing NeoBundle..."
+  let g:plug_basedir = $X_VIM_BASE . "/plugged"
+  if !filereadable( $X_VIM_BASE . "/autoload/plug.vim")
+    echo "Installing vim-plug and pulling plugins..."
     echo ""
-    silent !mkdir -p $X_VIM_BASE
-    silent !git clone https://github.com/VundleVim/Vundle.vim.git $X_VIM_BASE/bundle/Vundle.vim
-    echo "Installed NeoBundle..."
-    let g:do_vundle_plugin_install = 1
+    silent !mkdir -p $X_VIM_BASE . "/autoload"
+    silent !curl -fLo $X_VIM_BASE . /autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    echo "Installed vim-plug, plugins will be pulled..."
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    let g:plug_installed = 1
   endif
+  source $X_VIM_BASE/autoload/plug.vim
 else
-  set rtp+=~/.vim/bundle/Vundle.vim
-  if !filereadable( $HOME . "/.vim/bundle/Vundle.vim/README.md")
-    echo "Installing NeoBundle..."
+  let g:plug_basedir = "~/.vim/plugged"
+  if !filereadable( $HOME . "/.vim/autoload/plug.vim")
+    echo "Installing vim-plug and pulling plugins..."
     echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    echo "Installed NeoBundle..."
-    let g:do_vundle_plugin_install = 1
+    silent !mkdir -p ~/.vim/autoload
+    silent !curl -fLo ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    echo "Installed vim-plug, plugins will be pulled..."
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    let g:plug_installed = 1
   endif
 endif
-" *** Vundle Initialization }}}
+" *** vim-plug config / initialisation }}}
 
-" *** Vundle Plugins {{{
-call vundle#begin()
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin(g:plug_basedir)
 
-  " let Vundle manage Vundle, required
-  Plugin 'VundleVim/Vundle.vim'
+Plug 'tpope/vim-sensible'
 
-  " *** Themes
-  " Plugin 'NLKNguyen/papercolor-theme'
-  Plugin 'altercation/vim-colors-solarized'
+" disabled, too opinionated
+" Plug 'liuchengxu/vim-better-default'
 
-  " *** Other plugins
-  " some sane and secure defaults
-  Plugin 'tpope/vim-sensible'
-  Plugin 'tpope/vim-unimpaired'
+" sane settings for netrw file commander
+Plug 'tpope/vim-vinegar'
+let g:netrw_liststyle = 3		" tree view by default, toggle with 'i'
 
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
+" commenting
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
 
-  Plugin 'jamessan/vim-gnupg'
+Plug 'godlygeek/tabular'
+" needed for vimdeck
+Plug 'tpope/vim-markdown'
+Plug 'vim-scripts/SyntaxRange'
+" Plug 'sheerun/vim-polyglot'
 
-  " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-  Plugin 'ctrlpvim/ctrlp.vim'
-  let g:ctrlp_working_path_mode = 'ar'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
-  " GIT
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'scrooloose/syntastic.git'
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 0
-  let g:syntastic_check_on_wq = 0
+" " Mail:
+" Plug 'adborden/vim-notmuch-address'
 
-  " general purpose vim library - see plugin from http://vim-scripts.org/vim/scripts.html
-  Plugin 'L9'
+" taskwarrior
+" Plug 'farseer90718/vim-taskwarrior'
+Plug 'jamessan/vim-gnupg'
 
-  " automatically add ending objects
-  Plugin 'tpope/vim-endwise'
+Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_max_files = 0		" Set no max file limit
+let g:ctrlp_path_sort = 1
 
-  " commenting (gcc)
-  Plugin 'tpope/vim-commentary'
 
-  " quoting made simple
-  " --> cs"'
-  Plugin 'tpope/vim-surround'
+" if executable('ag')
+"   " Use Ag over Grep
+"   set grepprg=ag\ --nogroup\ --nocolor
 
-  " Unix helpers:
-  " - Remove: Delete a buffer and the file on disk simultaneously.
-  " - Unlink: Like :Remove, but keeps the now empty buffer.
-  " - Move: Rename a buffer and the file on disk simultaneously.
-  " - Rename: Like :Move, but relative to the current file's containing directory.
-  " - Chmod: Change the permissions of the current file.
-  " - Mkdir: Create a directory, defaulting to the parent of the current file.
-  " - Find: Run find and load the results into the quickfix list.
-  " - Locate: Run locate and load the results into the quickfix list.
-  " - Wall: Write every open window. Handy for kicking off tools like guard.
-  " - SudoWrite: Write a privileged file with sudo.
-  " - SudoEdit: Edit a privileged file with sudo.
-  Plugin 'tpope/vim-eunuch.git'
+"   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" endif
 
-  " enhanced netrw directory browser - see https://github.com/tpope/vim-vinegar
-  Plugin 'tpope/vim-vinegar.git'
+" Plug 'altercation/vim-colors-solarized'
+Plug 'iCyMind/NeoSolarized'
 
-  " JSON - see https://github.com/tpope/vim-jdaddy
-  " ex. Prettyprint: gqaj
-  Plugin 'tpope/vim-jdaddy.git'
+Plug 'editorconfig/editorconfig-vim'
 
-  " automatic indentation shift with
-  Plugin 'tpope/vim-sleuth'
+" GIT
+Plug 'tpope/vim-fugitive'
 
-  " better ga output including unicode codepoint
-  Plugin 'tpope/vim-characterize'
+" Unicode/utf8 aware 'ga'
+Plug 'tpope/vim-characterize'
 
-  " aligning text - see: http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
-  Plugin 'godlygeek/tabular.git'
+" " fzf fuzzy find
+" Plug '/usr/bin/fzf'
+" Plug 'junegunn/fzf.vim'
 
-  " SQL Utilities and dependencies
-  Plugin 'vim-scripts/SQLUtilities'
-  Plugin 'vim-scripts/Align'
+" Javascript/Typescript
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main'}
+" completion
+Plug 'neoclide/coc.vim', { 'branch': 'release'}
+let g:coc_global_extensions = [ 'coc-server' ]
 
-  " Ruby
-  Plugin 'vim-ruby/vim-ruby'
-  Plugin 'fatih/vim-go'
-  Plugin 'tpope/vim-dispatch'
-  Plugin 'AndrewRadev/splitjoin.vim'
-  Plugin 'SirVer/ultisnips'
+" Terraform
+Plug 'hashivim/vim-terraform'
+let g:terraform_align=1
+autocmd BufRead,BufNewFile *.hcl set filetype=terraform
+autocmd BufRead,BufNewFile *.tfvars set filetype=terraform
 
-  """"""" JavaScript
-  Plugin 'elzr/vim-json'
-  Plugin 'jelera/vim-javascript-syntax'
+" Rust
+Plug 'rust-lang/rust.vim'
+Plug 'timonv/vim-cargo'
+Plug 'racer-rust/vim-racer'
 
-  " Anible-YAML
-  " Plugin 'pearofducks/ansible-vim'
-  Plugin 'chase/vim-ansible-yaml'
-  let g:ansible_options = {'documentation_mapping': '<C-K>'}
+Plug 'majutsushi/tagbar'
 
-  " tmux integration
-  Plugin 'christoomey/vim-tmux-navigator'
+Plug 'sotte/presenting.vim'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-" *** Vundle Plugins }}}
 
-" *** Vundle: Initial Plugin Install {{{
-if g:do_vundle_plugin_install == 1
-  echo "calling PluginInstall"
-  PluginInstall
-  echo "called  PluginInstall"
+" syntax checker
+Plug 'vim-syntastic/syntastic'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+if g:statusline_used == "lightline"
+	Plug 'itchyny/lightline.vim'
+	" let g:lightline = {
+	"       \ 'colorscheme': 'solarized',
+	"       \ }
+	let g:lightline = {
+	      \ 'colorscheme': 'PaperColor',
+	      \ 'active': {
+	      \   'left': [ [ 'mode', 'paste' ],
+	      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+	      \ },
+	      \ 'component_function': {
+	      \   'gitbranch': 'fugitive#statusline'
+	      \ },
+	      \ }
+
+elseif g:statusline_used == "airline"
+	" statusline
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+
+	let g:airline_theme='solarized'
+	let g:airline_solarized_dark_text=1
+	" " Enable Powerline fonts for airline
+	" let g:airline_powerline_fonts = 0
+	" " set encoding=utf-8
+	let g:airline#extensions#whitespace#mixed_indent_algo = 1
+	let g:airline#extensions#tabline#enabled = 1
+	let g:airline#extensions#tabline#fnamemod = ':t'
+
+else
+	" flagship
+	Plug 'tpope/vim-flagship'
 endif
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-"
-" *** Vundle: initial plugin install }}}
 
-" *** helper functions {{{
-" search parent directories for cscope dbs and add them
-function! LoadCscope()
-  let db = findfile("cscope.out", ".;")
-  if (!empty(db))
-    let path = strpart(db, 0, match(db, "/cscope.out$"))
-    set nocscopeverbose " suppress 'duplicate connection' error
-    exe "cs add " . db . " " . path
-    set cscopeverbose
-  endif
-endfunction
-" *** helper functions }}}
+" Initialize plugin system
+call plug#end()
+" *** vim Plugins }}}
 
-" *** TEST Settings {{{
-" Leader-based shortcuts {{{
-" Source: http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
-" Type <Space>o to open a new file
-nnoremap <Leader>o :CtrlP<CR>
-" Type <Space>w to save file
-nnoremap <Leader>w :w<CR>
-" Copy & paste to system clipboard with <Space>p and <Space>y
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
-" Enter visual line mode
-nmap <Leader><Leader> V
-"}}}
-" *** }}}
 
-" *** autocmd {{{
-au 	BufNewFile,BufRead,StdinReadPost * 	 		if getline(1) =~? "<?php" | set ft=php | endif
-au 	BufNewFile,BufRead,StdinReadPost * 	 		if getline(1) =~? "<?python" | set ft=python | endif
-au 	FileType c,cpp,lex,yacc					call LoadCscope()
-augroup filetypedetect
-  " Mail
-  autocmd BufRead,BufNewFile *mutt-*              setfiletype mail
-augroup END
+" *** language specific settings {{{
+" more stable typescript syntax highlighting, comes with a performance hit!
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-" Also don't do it when the mark is in the first line, that is the default
-" position when opening a file.
-autocmd BufReadPost *
-  \ if line("'\"") > 1 && line("'\"") <= line("$") |
-  \   exe "normal! g`\"" |
-  \ endif
+" *** language specific settings }}}
 
-" *** autocmd }}}
 
-" *** Security (sudo/pass) {{{
-
-" ***** sudoedit {{{
-if !empty($SUDO_USER) && $USER !=# $SUDO_USER
-  set viminfo=
-  set directory-=~/tmp
-  set backupdir-=~/tmp
-endif
-" ***** sudoedit }}}
-
-" FIXME: disable swapfile, backup, undo and vimonfo for pass.
-" Following link might help:
-"    https://git.zx2c4.com/password-store/plain/contrib/vim/noplaintext.vim
-
-" *** security }}}
-
-" " *** Window resizing {{{
-if bufwinnr(1)
-  noremap <S-Up> <C-W>+3
-  noremap <S-Down> <C-W>-3
-  noremap <S-Left> <C-W><3
-  noremap <S-Right> <C-W>>3
-endif
-" " *** Window resizing }}}
-
-" split mappings
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" *** UI Settings {{{
-"
-" load my color scheme
-"
 " *** color scheme Solarized {{{
-colorscheme solarized
+colorscheme NeoSolarized
+" colorscheme solarized
 " let g:solarized_termcolors=256
-let g:solarized_termcolors=16
-set t_Co=16
+" let g:solarized_visibility=low
 set background=light
-let g:airline_theme='solarized'
-" I feel that high contrast gives better readability on subotimal configured
-" terminals - which I unfortunaletly have to deal with frequently
-let g:solarized_contrast="medium"
-
-" make sure ToggleBG is mapped - see https://github.com/altercation/vim-colors-solarized/issues/40
-if !exists("*ToggleBG")
-    call togglebg#map("")
+if has('termguicolors')
+  set termguicolors
 endif
 " *** }}}
-
-" Enable Powerline fonts for airline
-let g:airline_powerline_fonts = 1
-" set encoding=utf-8
-let g:airline#extensions#whitespace#mixed_indent_algo = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-" *** UI Settings }}}
 
 " *** General Settings {{{
-syntax on                             " enable syntax
-filetype plugin indent on             " Automatically detect file types.
-"
-set laststatus=2
-set noshowmode
-set showtabline=1	" show tabs only if there are multiple tabs
-set guioptions-=e
+syntax enable				" enable syntax
+filetype plugin indent on		" Automatically detect file types.
 
-" treat .md as Markdown
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+let mapleader = ","
+let maplocalleader = "\\"
+
+" map ESC to the homerow to a sequence that effectivelz does noething
+" when accidently hit in command mode.
+imap jj <Esc>
+
+set laststatus=2			" Always show status line
+set noshowmode
+set showtabline=1			" show tabs only if there are multiple tabs
+set guioptions-=e
 
 set autoindent
 set cindent
@@ -295,7 +223,7 @@ imap    	<BS>
 map 	<BS>    X
 
 " filename patterns to ignore on filename expansion (like CTRLP)
-set wildignore+=*~,*.swp,*.o,*.so,*.git,*.hg,*.svn,*.tmp,*.DS_Store,*.ko,*.mod.c
+set wildignore+=tags,*~,*.swp,*.o,*.so,*.git,*.hg,*.svn,*.tmp,*.DS_Store,*.ko,*.mod.c,*.class
 
 set hlsearch
 set smartcase
@@ -305,7 +233,6 @@ set foldmethod=marker
 set foldopen+=jump
 
 set incsearch       " Incremental search
-set laststatus=2    " Always show status line
 set lazyredraw
 set linebreak
 set clipboard=unnamed
@@ -335,10 +262,10 @@ set mousehide  " Hide mouse after chars typed
 set splitright
 set splitbelow
 
-set timeoutlen=1200     " A little bit more time for macros
+set timeoutlen=400
 set ttimeoutlen=100
 
-set     nowrap          		" Zeilen nicht automatisch umbrechen
+set     nowrap          " Zeilen nicht automatisch umbrechen
 
 " backup settings
 set     backup
@@ -350,19 +277,152 @@ if ( isdirectory( "/var/tmp" ))
 endif
 
 " trailing whitespace
-highlight ExtraWhitespace ctermbg=darkmagenta guibg=darkmagenta
-match ExtraWhitespace /\s\+\%#\@<!$/
+" highlight ExtraWhitespace ctermbg=darkmagenta guibg=darkmagenta
+" match ExtraWhitespace /\s\+\%#\@<!$/
+
+set list
+if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8') && version >= 700
+  set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:.,nbsp:¬
+  let &fillchars = "vert:\u2502"
+else
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<
+endif
 
 " remove trailing whitespace
 " nnoremap <C-w> :%s/\s\+$//gec<CR>
-nnoremap <Leader>w :%s/\s\+$//gec<CR>
+" nnoremap <Leader>w :%s/\s\+$//gec<CR>
+" Clean trailing whitespace
+nnoremap <leader>ww mz:%s/\s\+$//<cr>:let @/=''<cr>`z
+
+" finding files:
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks, assuming that vim is
+" always running in the project base directory.
+set path+=**
+" Display all matching files when we tab complete
+set wildmenu
+
+" poor man's fuzzy search
+nnoremap <Leader>p :e **/*
+nnoremap <Leader>v :vsplit **/*
+nnoremap <Leader>s :split **/*
+
+" jump from ApiClient to api_client.java with 'gf'
+set includeexpr=substitute(substitute(substitute(v:fname,'::','/','g'),'$','.rb',''),'\(\<\u\l\+\|\l\+\)\(\u\)','\l\1_\l\2','g')
+
+
+" NOW WE CAN:
+" - Hit tab to :find by partial match
+" - Use * to make it fuzzy
+" THINGS TO CONSIDER:
+" - :b lets you autocomplete any open buffer
 
 " *** General Settings }}}
+
+" *** Security (sudo/pass) {{{
+
+" ***** sudoedit {{{
+if !empty($SUDO_USER) && $USER !=# $SUDO_USER
+  set viminfo=
+  set directory-=~/tmp
+  set backupdir-=~/tmp
+endif
+" ***** sudoedit }}}
+
+" FIXME: disable swapfile, backup, undo and vimonfo for pass.
+" Following link might help:
+"    https://git.zx2c4.com/password-store/plain/contrib/vim/noplaintext.vim
+
+" *** security }}}
+
+
+
+" *** Filetpype Settings {{{
+" treat .md as Markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+" rust specific settings
+let g:rustfmt_autosave = 1
+let g:rustfmt_command = 'rustup run stable rustfmt'
+
+let g:racer_cmd = '~/.cargo/bin/racer'
+let g:racer_experimental_completer = 1
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap gr <Plug>(rust-doc)
+
+" tagbar settings for rust
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'rust',
+    \ 'kinds' : [
+        \'T:types,type definitions',
+        \'f:functions,function definitions',
+        \'g:enum,enumeration names',
+        \'s:structure names',
+        \'m:modules,module names',
+        \'c:consts,static constants',
+        \'t:traits',
+        \'i:impls,trait implementations',
+    \]
+    \}
+
+" *** Filetpype Settings }}}
+
+" *** autocmd {{{
+au 	BufNewFile,BufRead,StdinReadPost * 	 		if getline(1) =~? "<?php" | set ft=php | endif
+au 	BufNewFile,BufRead,StdinReadPost * 	 		if getline(1) =~? "<?python" | set ft=python | endif
+au 	FileType c,cpp,lex,yacc					call LoadCscope()
+augroup filetypedetect
+  " Mail
+  autocmd BufRead,BufNewFile *mutt-*              setfiletype mail
+augroup END
+
+au BufNewFile,BufRead,BufEnter   *.wiki    setlocal spell    spelllang=de_de textwidth=90
+au BufNewFile,BufRead,BufEnter   *.md      setlocal spell    spelllang=de_de textwidth=90
+au BufNewFile,BufRead,BufEnter   *.txt     setlocal spell    spelllang=de_de textwidth=90
+au BufNewFile,BufRead,BufEnter   README    setlocal spell    spelllang=en_us textwidth=90
+
+
+""""""" Java
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+nmap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+imap <F4> <Plug>(JavaComplete-Imports-AddSmart)
+
+
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+" Also don't do it when the mark is in the first line, that is the default
+" position when opening a file.
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
+
+" *** autocmd }}}
+
+" *** helper functions {{{
+" search parent directories for cscope dbs and add them
+function! LoadCscope()
+  let db = findfile("cscope.out", ".;")
+  if (!empty(db))
+    let path = strpart(db, 0, match(db, "/cscope.out$"))
+    set nocscopeverbose " suppress 'duplicate connection' error
+    exe "cs add " . db . " " . path
+    set cscopeverbose
+  endif
+endfunction
+" *** helper functions }}}
 
 " " *** soure local vimrc {{{
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
 " " *** soure local vimrc }}}
-
+"
+endif " vscode
+"
 " vim:foldcolumn=2 foldmethod=marker

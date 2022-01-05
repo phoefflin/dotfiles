@@ -8,3 +8,5 @@ for _file in ~/.bash_profile.local \
 	fi
 done
 unset _file
+
+export PATH="$HOME/.cargo/bin:$PATH"

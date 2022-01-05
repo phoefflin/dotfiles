@@ -8,17 +8,21 @@
 
 - link:
     # ~/.dotfiles: ''
+    ~/.astylerc: .astylerc
     ~/.bash_profile: .bash_profile
-    ~/.bashrc: .bashrc
     ~/.bashrc.d: .bashrc.d
+    ~/.bashrc: .bashrc
     ~/.dir_colors: .dir_colors
-    ~/.vim: .vim
-    ~/.tmux.conf: .tmux.conf
+    ~/.editorconfig: .editorconfig
     ~/.gitconfig: .gitconfig
-    ~/.mutt: .mutt
-    ~/.offlineimaprc: .offlineimaprc
+    ~/.inputrc: .inputrc
     ~/.mbsyncrc: .mbsyncrc
     ~/.msmtprc: .msmtprc
+    ~/.mutt: .mutt
+    ~/.offlineimaprc: .offlineimaprc
+    ~/.tmux.conf: .tmux.conf
+    ~/.vim: .vim
+    ~/.xmodmap: .xmodmap
     ~/bin: bin
 
 - shell:

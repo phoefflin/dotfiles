@@ -28,6 +28,7 @@ shopt -s checkwinsize
 # set default editor
 export EDITOR=vim
 export PAGER=less
+export BROWSER=chromium
 
 if [ -f ~/.dir_colors ]; then
 	# setup nice colors
