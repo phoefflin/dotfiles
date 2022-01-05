@@ -1,0 +1,17 @@
+# Maintainer: phoefflin <p.hoefflin@posteo.de>
+pkgname=sway-wayland-session
+pkgver=0.9.10
+pkgrel=1
+pkgdesc="sway wayland start session"
+arch=('any')
+license=('GPL')
+source=("${pkgname}.sh" "${pkgname}.desktop")
+sha256sums=("SKIP" "SKIP")
+
+package() {
+  cd "$srcdir"
+  mkdir -p "$pkgdir/usr/bin"
+  mkdir -p "$pkgdir/usr/share/wayland-sessions"
+  install -Dm755 ${pkgname}.sh "$pkgdir/usr/bin/"
+  install -Dm644 ${pkgname}.desktop "$pkgdir/usr/share/wayland-sessions/"
+}

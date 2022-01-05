@@ -2,6 +2,7 @@
 .vim/spell
 .vim/.netrwhist
 .??*.swp
-win/uncap.exe
 bin/*.pyc
 .mutt/cache
+
+*/aur/*/*.tar.zst

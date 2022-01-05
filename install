@@ -1,14 +1,62 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-set -e
+set -ae
 
-CONFIG="install.conf.yaml"
-DOTBOT_DIR="dotbot"
+_basedir=$(dirname $0)
+_modules_active=$(cat $_basedir/modules_active)
+_stow_flags="-v --ignore aur --ignore packages.txt"
+errfile=$(mktemp --tmpdir $(basename $0).XXXXXX)
+trap "rm -f $errfile" EXIT
 
-DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+err_out() {
+  cat $errfile >&2
+  print "ERROR during install"
+  exit 1
+}
 
-cd "${BASEDIR}"
-git submodule update --init --recursive "${DOTBOT_DIR}"
+print() {
+  echo "*** $@ ***"
+}
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+package_install() {
+  package_file="$1"
+  print "installing packages from $package_file"
+  cat "$package_file" | egrep -v '^$' | egrep -v '^#' |
+    paru -q  -S --needed --noconfirm -
+}
+
+localpackage_install() {
+  pkgbuild="$1"
+  print "building package from $pkgbuild"
+  # start build in subshell
+  (
+  cd $(dirname $pkgbuild)
+  makepkg -csfi --noconfirm --needed
+  )
+}
+
+# main loop
+print "installing dotfiles"
+for module in $_modules_active; do
+  [ -z "$module" ] && continue
+  print "Module $module"
+  stow $_stow_flags $module/
+
+  # install arch/AUR packages
+  package_file="$module/packages.txt"
+  if [ -f "$package_file" ]; then
+    print "installing packages ($package_file)"
+    package_install "$package_file" >$errfile 2>&1 || err_out
+  fi
+
+  # build/install own AUR packages
+  if [ -d "$module/aur" ]; then
+    _aur_buildfiles=$(find "$module/aur" -maxdepth 2 -mindepth 2 -type f -name PKGBUILD)
+    for pkgbuild in $_aur_buildfiles; do
+      print "Module $(dirname $pkgbuild)"
+      localpackage_install "$pkgbuild" >$errfile 2>&1 || err_out
+    done
+  fi
+done
+
+print "dotfiles set up successfully"

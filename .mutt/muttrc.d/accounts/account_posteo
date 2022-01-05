@@ -1,5 +1,0 @@
-# posteo: general account settings
-set my_mailaddr      = "p.hoefflin@posteo.de"		# main mail address
-set from             = $my_mailaddr
-alternates             "(p\.hoefflin@posteo\.de)|(hoeckst@gmail\.com)|(p\.hoefflin@gmx\.de)"
-# vim: ft=muttrc

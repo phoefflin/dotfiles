@@ -1,0 +1,54 @@
+/*
+Arc-Dark Color Scheme
+*/
+
+ /* see http://chriskempson.com/projects/base16 */
+@import ".config/waybar/themes/base16-nord.css";
+@define-color highlight @base03;
+
+*{
+    font-family: Liberation Mono;
+}
+
+
+#window {
+	  border: 1px solid @highlight;
+    margin: 0px 5px 0px 5px;
+
+}
+
+#inner-box {
+
+    background-color: @base02;
+
+}
+
+#outer-box {
+  margin: 5px;
+  padding:10px;
+  background-color: @base03;
+	margin-top: -22px;
+}
+
+#scroll {
+}
+
+#text {
+padding: 5px;
+color: white;
+}
+
+#entry:nth-child(even){
+    background-color: @base01;
+}
+
+#entry {
+    background-color: @base03;
+}
+
+#entry:selected {
+    background-color: @highlight;
+}
+
+#text:selected {
+}
