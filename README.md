@@ -7,4 +7,6 @@
 
 ## install
 
-        ./install.sh
+    chezmoi init https://github.com/phoefflin/dotfiles.git
+    chezmoi diff
+    chezmoi apply
