@@ -1,0 +1,31 @@
+[user]
+	name = Philipp Hoefflin
+	email = philipp.hoefflin@haufe-akademie.de
+[diff]
+	tool = vimdiff
+[push]
+	default = simple
+[color]
+	ui = auto
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[format]
+	signOff = true
+[alias]
+	lg1 = log --graph --abbrev-commit --decorate --all
+	lg2 = log --graph --abbrev-commit --decorate --all
+	lg = !"git lg1"
+	gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs git branch -D"
+	gone-dry-run = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}'"
+	log1 = log --oneline
+  # see https://docs.gitlab.com/ee/gitlab-basics/add-file.html#push-options-for-merge-requests
+	push-merge-request-draft = "push -o merge_request.create -o merge_request.squash -o merge_request.remove_source_branch -o merge_request.draft --set-upstream origin HEAD"
+	push-merge-request = "push -o merge_request.create -o merge_request.squash -o merge_request.remove_source_branch --set-upstream origin HEAD"
+	push-merge-request-automerge = "push -o merge_request.create -o merge_request.squash -o merge_request.remove_source_branch -o merge_request.merge_when_pipeline_succeeds --set-upstream origin HEAD"
+
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main

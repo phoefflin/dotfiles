@@ -1,8 +1,0 @@
-.vim/bundle
-.vim/spell
-.vim/.netrwhist
-.??*.swp
-bin/*.pyc
-.mutt/cache
-
-*/aur/*/*.tar.zst

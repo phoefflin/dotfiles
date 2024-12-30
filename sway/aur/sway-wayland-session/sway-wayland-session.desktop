@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=Sway Wayland Desktop
-Comment=An i3-compatible Wayland compositor
-Exec=/usr/bin/sway-wayland-session.sh
-Type=Application
