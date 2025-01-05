@@ -17,14 +17,6 @@ export EDITOR=nvim
 export PAGER=less
 export BROWSER=chromium
 
-# prompt
-if [ -n $(type -p starship) ]; then
-	eval "$(starship init bash)"
-else 
-	PS1='[\u@\h \W]\$ '
-fi
-
-
 # set _bashrc_debug to true to get more debuging output:
 # _bashrc_debug=true
 if ${_bashrc_debug:=false}; then
@@ -77,6 +69,13 @@ fi
 
 if [ -f ~/.bashrc.local ]; then
         source ~/.bashrc.local
+fi
+
+# prompt
+if [ -n $(type -p starship) ]; then
+	eval "$(starship init bash)"
+else 
+	PS1='[\u@\h \W]\$ '
 fi
 
 # unset debugging helper variable
