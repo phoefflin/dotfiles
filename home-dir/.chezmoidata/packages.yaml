@@ -1,0 +1,6 @@
+---
+packages:
+  base:
+    - bash
+    - zsh
+    - neovim
