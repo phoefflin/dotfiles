@@ -7,9 +7,15 @@
 
 ## install
 
-    chezmoi init https://github.com/phoefflin/dotfiles.git
+    chezmoi init [--ssh] phoefflin
     chezmoi diff
     chezmoi apply
+
+## useful commands
+
+  * `chezmoi managed`: list managed files
+  * `chezmoi execute-template <[template-file]`: evaluate uns dump given template's content
+  * `chezmoi data`: show data usable in templates
 
 ## links
 

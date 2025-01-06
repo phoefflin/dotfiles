@@ -59,9 +59,9 @@ for _bindir in  \
 done
 unset _bindir
 
-# source all *.bash files in .bashrc.d in alphanumerical order
-if [ -d ~/.bashrc.d ]; then
-        for _file in ~/.bashrc.d/*.bash; do
+# source all *.bash files in .shellrc.d in alphanumerical order
+if [ -d ~/.shellrc.d ]; then
+        for _file in ~/.shellrc.d/*.bash*; do
                 source $_file
         done
         unset _file

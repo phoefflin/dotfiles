@@ -1,6 +1,19 @@
 ---
 packages:
   base:
+    - linux-firmware
+    - linux-zen
+    - linux-zen-headers
+    - base-devel
     - bash
     - zsh
+    - starship
+    # editor
     - neovim
+    # neovim-clipboard X11/Wayland
+    - xclip
+    - wl-clipboard
+    # node
+    - nodejs
+    - pnpm
+    - nvm
