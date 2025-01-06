@@ -37,3 +37,4 @@ if [ _pnpm_bash_completion_done != true ]; then
         ###-end-pnpm-completion-###
 
 fi
+

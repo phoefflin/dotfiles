@@ -8,3 +8,4 @@ EDITOR=nvim
 export VISUAL="$EDITOR"
 alias vim=$EDITOR
 alias vi='vim -u NONEXISTENT_PROFILE'
+

@@ -5,3 +5,4 @@ if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
 fi
 
 alias nrp='nr projen'
+
