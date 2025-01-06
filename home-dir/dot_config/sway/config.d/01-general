@@ -1,4 +1,4 @@
-# Windows/Cmd key 
+# Windows/Cmd key
 set $mod Mod4
 
 # Home row direction keys, like vim
@@ -37,7 +37,7 @@ exec swayidle -w\
 #
     # Start a terminal
     bindsym $mod+Return exec ~/.config/sway/scripts/terminal-wrapper.sh $term
-         
+
     # Logout Dialog
     set $logout_dialog (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
     mode "$logout_dialog" {
@@ -76,7 +76,7 @@ exec swayidle -w\
 
     # Start your launcher
     bindsym $mod+d exec $menu
-    
+
     # Active Window list
     # bindsym $mod+p exec ~/.config/wofi/windows.py
 
@@ -250,13 +250,13 @@ bindsym --whole-window --border $mod+shift+button5 resize grow width 5 px or 5 p
 #    bindsym print exec /usr/share/sway/scripts/grimshot --notify save output
 #    bindsym Shift+print exec ~/.config/sway/scripts/screenshot.sh
   ## Screenshot // Screenshot active display // <Print> ##
-  bindsym Print exec /usr/share/sway/scripts/grimshot --notify save output - | swappy -f -
+  bindsym Print exec /usr/bin/grimshot --notify save output - | swappy -f -
 
   ## Screenshot // Screenshot current window // <><Print> ##
-  bindsym $mod+Print exec /usr/share/sway/scripts/grimshot --notify save active - | swappy -f -
+  bindsym $mod+Print exec /usr/bin/grimshot --notify save active - | swappy -f -
 
   ## Screenshot // Screenshot selected region // <><Shift><Print> ##
-  bindsym $mod+Shift+Print exec /usr/share/sway/scripts/grimshot --notify save area - | swappy -f -
+  bindsym $mod+Shift+Print exec /usr/bin/grimshot --notify save area - | swappy -f -
 
 
 # Keybindings List

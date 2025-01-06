@@ -10,10 +10,10 @@ if vim.g.vscode then
   print("running in VSCode")
 else
   print("NOT running in VSCode")
-  
+
   -- Create a group for autocmds
   vim.api.nvim_create_augroup("EnsureTrailingNewline", { clear = true })
-  
+
   -- Autocmd to ensure trailing newline
   vim.api.nvim_create_autocmd("BufWritePre", {
       group = "EnsureTrailingNewline",
@@ -25,4 +25,3 @@ else
       end,
   })
 end
-
