@@ -9,6 +9,7 @@ packages:
     - zsh
     - starship
     # editor
+    - zed
     - neovim
     # neovim-clipboard X11/Wayland
     - xclip

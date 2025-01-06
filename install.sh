@@ -17,4 +17,3 @@ echo "Running 'chezmoi $*'" >&2
 # exec: replace current process with chezmoi
 set -x
 exec "$chezmoi" "$@"
-
