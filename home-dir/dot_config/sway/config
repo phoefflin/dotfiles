@@ -1,0 +1,11 @@
+# Config for sway
+#
+# include Arch provided system config snippets
+include /etc/sway/config.d/*
+ 
+# user config directory
+# include $HOME/.config/sway/config.d/*
+include ${HOME}/.config/sway/config.d/*
+
+# only enable this if every app you use is compatible with wayland
+# xwayland disable

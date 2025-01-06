@@ -1,0 +1,25 @@
+# XXX # Auth with polkit-gnome:
+# XXX exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# XXX 
+# Desktop notifications
+exec mako
+
+# Network Applet
+exec nm-applet --indicator
+
+exec /usr/bin/gammastep-indicator -l 47.9959:7.85222 -m wayland -t 6500:4700
+
+exec wl-paste -t text --watch clipman store --no-persist
+
+exec autotiling
+
+# exec  python3 ~/.config/sway/scripts/swayfader.py
+
+# Done via /etc/sway/config.d/50-systemd-user.conf
+# # GTK3 applications take a long time to start
+# exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+# exec hash dbus-update-activation-environment 2>/dev/null && \
+#      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+     
+# Welcome App
+# exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/  

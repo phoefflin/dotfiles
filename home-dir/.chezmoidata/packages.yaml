@@ -17,4 +17,6 @@ packages:
     # node
     - nodejs
     - pnpm
+    - npm
     - nvm
+
