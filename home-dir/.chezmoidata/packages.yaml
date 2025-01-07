@@ -31,4 +31,5 @@ packages:
     - wdisplays
     - wofi
     - python-i3-quickterm
+    - way-displays
 

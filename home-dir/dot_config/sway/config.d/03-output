@@ -13,28 +13,33 @@
 
 
 # output layout (left+right+internal)
-# set $output-left DP-3
-# set $output-right DP-4
-set $output-internal eDP-1
-set $output-left DP1-2
-set $output-right DP1-3
-set $output-right-single DP-3
+set $output-left eDP1
+set $output-middle-home DP2-1
+set $output-right-home DP2-2
+# set $output-middle-office DP2-1
+set $output-middle-office DP2
+set $output-right-office DP2-2
+set $output-internal eDP1
 
-bindswitch --reload --locked lid:on output $output-internal disable
-bindswitch --reload --locked lid:off output $output-internal enable
+# bindswitch --reload --locked lid:on output $output-internal disable
+# bindswitch --reload --locked lid:off output $output-internal enable
 
-exec_always ~/.config/sway/scripts/clamshell.sh $output-internal
+# exec_always ~/.config/sway/scripts/clamshell.sh $output-internal
 
-output $output-internal resolution 1920x1080 position 0,0 scale 2
+# output $output-internal resolution 1920x1080 position 0,0 scale 2
 
 # exec_always way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
+exec_always way-displays
+
+
 
 workspace 1 output $output-left $output-internal
 workspace 2 output $output-left $output-internal
-workspace 3 output $output-left $output-internal
-workspace 4 output $output-right $output-right-single $output-internal
-workspace 5 output $output-right $output-right-single $output-internal
-workspace 6 output $output-right $output-right-single $output-internal
-workspace 7 output $output-right $output-right-single $output-internal
-workspace 8 output $output-right $output-right-single $output-internal
-workspace 9 output $output-internal $output-right
+workspace 3 output $output-middle-home $output-middle-office $output-internal
+workspace 4 output $output-middle-home $output-middle-office $output-internal
+workspace 5 output $output-middle-home $output-middle-office $output-internal
+workspace 6 output $output-middle-home $output-middle-office $output-internal
+workspace 7 output $output-right-home $output-right-office $output-internal
+workspace 8 output $output-right-home $output-right-office $output-internal
+workspace 9 output $output-right-home $output-right-office $output-internal
+
