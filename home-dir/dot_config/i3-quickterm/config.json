@@ -1,0 +1,10 @@
+{
+  "menu": "wofi -dmenu -p 'quickterm: ' -no-custom -auto-select",
+  "term": "alacritty",
+  "ratio": 0.45,
+  "pos": "top",
+  "shells": {
+    "shell": "{$SHELL}"
+  }
+}
+

@@ -8,6 +8,8 @@ packages:
     - bash
     - zsh
     - starship
+    - ghostty
+    - alacritty
     # editor
     - zed
     - neovim
@@ -19,4 +21,14 @@ packages:
     - pnpm
     - npm
     - nvm
+  sway:
+    - grimshot-bin-sway
+    - sway
+    - sway-contrib
+    - swaybg
+    - swayidle
+    - swaylock
+    - wdisplays
+    - wofi
+    - python-i3-quickterm
 

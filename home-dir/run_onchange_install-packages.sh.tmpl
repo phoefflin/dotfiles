@@ -12,4 +12,5 @@ if [[ "{{ .chezmoi.osRelease.id }}" != "arch" ]]; then
 fi
 
 install_arch_packages {{.packages.base | join " "}}
+install_arch_packages {{.packages.sway | join " "}}
 
