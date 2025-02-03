@@ -3,6 +3,16 @@
 ## Requirements
 
   * base-devel, bash, stow, paru
+
+        # install paru
+        mkdir /tmp/paru
+        cd /tmp/paru
+        sudo pacman -S --needed base-devel stow
+        git clone https://aur.archlinux.org/paru.git
+        cd paru
+        makepkg -si
+
+
   * sudo permissions to install packages
 
 ## install
