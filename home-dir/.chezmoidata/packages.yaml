@@ -1,0 +1,97 @@
+---
+packages:
+  base:
+    - alacritty
+    - aspell
+    - aspell-en
+    - base-devel
+    - bash
+    - bash-completion
+    - bat
+    - docker
+    - docker-buildx
+    - brave-bin
+    - browserpass-chromium
+    - chromium
+    # editor
+    - dmenu
+    # - fprintd # fingerprintreader 0a5c:5843 currently not suppoerted: https://fprint.freedesktop.org/supported-devices.html
+    - fwupd
+    - fzf
+    - ghostty
+    - gnome-boxes
+    - hunspell
+    - hunspell-de
+    - imagemagick
+    - less
+    - linux-firmware
+    - linux-zen
+    - linux-zen-headers
+    - man
+    - man-db
+    - man-pages
+    - networkmanager
+    - networkmanager-openconnect
+    - network-manager-applet
+    - neovim
+    # neovim-clipboard X11/Wayland
+    # node
+    - nodejs
+    - npm
+    - nvm
+    - pass
+    - pnpm
+    - ripgrep
+    - rsync
+    - restic
+    - snapper
+    - starship
+    - tcpdump
+    - texinfo
+    - ttf-bitstream-vera
+    - ttf-dejavu
+    - ttf-droid
+    - ttf-fira-mono
+    - ttf-freefont
+    - ttf-inconsolata
+    - ttf-jetbrains-mono-nerd
+    - ttf-liberation
+    - ttf-liberation-mono-nerd
+    - ttf-linux-libertine
+    - ttf-nerd-fonts-symbols
+    - ttf-nerd-fonts-symbols-common
+    - ttf-ubuntu-font-family
+    - usbutils
+    # - vscodium-bin
+    # - vscodium-bin-features
+    # - vscodium-bin-marketplace
+    - visual-studio-code-bin
+    # - code
+    # - code-features
+    # - code-marketplace
+    - wireshark-qt
+    - xclip
+    - zed
+    - zsh
+  sway:
+    - brightnessctl
+    - gammastep
+    - grim
+    - grimshot-bin-sway
+    - mako
+    - pasystray
+    - python-i3-quickterm
+    - rofi
+    - slurp
+    - swappy
+    - sway
+    - swaybg
+    - sway-contrib
+    - swayidle
+    - swaylock
+    - waybar
+    - way-displays
+    - wl-clipboard
+    - wdisplays
+    - wofi
+

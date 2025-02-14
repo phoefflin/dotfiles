@@ -1,0 +1,84 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+if [ -f ~/.dir_colors ]; then
+        # setup nice colors
+        eval $(dircolors ~/.dir_colors)
+fi
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+# set default editor
+export EDITOR=nvim
+export PAGER=less
+export BROWSER=chromium
+
+# set _bashrc_debug to true to get more debuging output:
+# _bashrc_debug=true
+if ${_bashrc_debug:=false}; then
+        _bashrc_debug_echo="echo INFO: "
+else
+        _bashrc_debug_echo=true
+fi
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+$_bashrc_debug_echo "in ${BASH_SOURCE[0]}"
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+HISTSIZE=3000
+HISTFILESIZE=3000
+
+export HISTCONTROL HISTSIZE HISTFILESIZE
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+shopt -s checkwinsize
+
+# add personal bin directries to $PATH
+for _bindir in  \
+    ~/.local/bin \
+        ~/bin   \
+        ~/bin.local; do
+        if [ -d "$_bindir" ]; then
+                case "$PATH" in
+                *${_bindir}:*)
+                        : already in
+                        ;;
+                *)      PATH="$_bindir:$PATH"
+                        ;;
+                esac
+        fi
+done
+unset _bindir
+
+# source all *.bash files in .shellrc.d in alphanumerical order
+if [ -d ~/.shellrc.d ]; then
+        for _file in ~/.shellrc.d/*.bash*; do
+                source $_file
+        done
+        unset _file
+fi
+
+if [ -f ~/.bashrc.local ]; then
+        source ~/.bashrc.local
+fi
+
+# prompt
+if [ -n $(type -p starship) ]; then
+	eval "$(starship init bash)"
+else 
+	PS1='[\u@\h \W]\$ '
+fi
+
+# unset debugging helper variable
+unset _bashrc_debug_echo _bashrc_debug
+# vim:ft=sh
+

@@ -1,0 +1,51 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=2000
+SAVEHIST=2000
+unsetopt beep
+
+# emacs mode
+bindkey -e
+# vi mode
+# bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+# zstyle :compinstall filename '/home/hoefflinp/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# autocomplete
+setopt NO_BEEP NO_AUTOLIST BASH_AUTOLIST NO_MENUCOMPLETE
+
+# Motion
+bindkey '^[[1;5C' forward-word  # Ctrl + Right Arrow
+bindkey '^[[1;5D' backward-word # Ctrl + Left Arrow
+
+if [ -f ~/.dir_colors ]; then
+        # setup nice colors
+        eval $(dircolors ~/.dir_colors)
+fi
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+# set default editor
+export EDITOR=nvim
+export PAGER=less
+export BROWSER=chromium
+
+# source all *.zsh files in .shellrc.d in alphanumerical order
+if [ -d ~/.shellrc.d ]; then
+        for _file in ~/.shellrc.d/*.zsh*; do
+                source $_file
+        done
+        unset _file
+fi
+
+if [ -f ~/.zshrc.local ]; then
+        source ~/.zshrc.local
+fi
+
+eval "$(starship init zsh)"
+
