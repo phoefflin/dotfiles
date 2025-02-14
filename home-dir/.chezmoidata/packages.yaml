@@ -70,7 +70,6 @@ packages:
     # - code-features
     # - code-marketplace
     - wireshark-qt
-    - wl-clipboard
     - xclip
     - zed
     - zsh
@@ -92,6 +91,7 @@ packages:
     - swaylock
     - waybar
     - way-displays
+    - wl-clipboard
     - wdisplays
     - wofi
 
