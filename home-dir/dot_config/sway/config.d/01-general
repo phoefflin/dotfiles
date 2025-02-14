@@ -250,13 +250,15 @@ bindsym --whole-window --border $mod+shift+button5 resize grow width 5 px or 5 p
 #    bindsym print exec /usr/share/sway/scripts/grimshot --notify save output
 #    bindsym Shift+print exec ~/.config/sway/scripts/screenshot.sh
   ## Screenshot // Screenshot active display // <Print> ##
-  bindsym Print exec /usr/bin/grimshot --notify save output - | swappy -f -
+  # bindsym Print exec /usr/bin/grimshot --notify save output - | swappy -f -
+  bindsym $mod+Shift+Print exec /usr/bin/grimshot --notify save output - | swappy -f -
 
   ## Screenshot // Screenshot current window // <><Print> ##
   bindsym $mod+Print exec /usr/bin/grimshot --notify save active - | swappy -f -
 
   ## Screenshot // Screenshot selected region // <><Shift><Print> ##
-  bindsym $mod+Shift+Print exec /usr/bin/grimshot --notify save area - | swappy -f -
+  # bindsym $mod+Shift+Print exec /usr/bin/grimshot --notify save area - | swappy -f -
+  bindsym Print exec /usr/bin/grimshot --notify save area - | swappy -f -
 
 
 # Keybindings List

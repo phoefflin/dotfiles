@@ -15,8 +15,14 @@ bindkey -e
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-#
-#
+
+# autocomplete
+setopt NO_BEEP NO_AUTOLIST BASH_AUTOLIST NO_MENUCOMPLETE
+
+# Motion
+bindkey '^[[1;5C' forward-word  # Ctrl + Right Arrow
+bindkey '^[[1;5D' backward-word # Ctrl + Left Arrow
+
 if [ -f ~/.dir_colors ]; then
         # setup nice colors
         eval $(dircolors ~/.dir_colors)

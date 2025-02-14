@@ -13,23 +13,26 @@
 
 
 # output layout (left+right+internal)
-set $output-left eDP1
-set $output-middle-home DP2-1
-set $output-right-home DP2-2
+set $output-left eDP-1
+set $output-middle-home DP-3
+set $output-right-home DP-4
 # set $output-middle-office DP2-1
 set $output-middle-office DP2
 set $output-right-office DP2-2
-set $output-internal eDP1
+set $output-internal eDP-1
 
 # bindswitch --reload --locked lid:on output $output-internal disable
 # bindswitch --reload --locked lid:off output $output-internal enable
 
 # exec_always ~/.config/sway/scripts/clamshell.sh $output-internal
 
-# output $output-internal resolution 1920x1080 position 0,0 scale 2
+output $output-internal resolution 1920x1080 position 0,0 scale 1
+output $output-middle-home resolution 1920x1080 position 1920,0 scale 1
+output $output-right-home resolution 1920x1080 position 3840,0 scale 1
+# output $output-middle-home resolution 1920x1080 position 1920,0 scale 1
+# output $output-right-home resolution 1920x1080 position 3840,0 scale 1
 
-# exec_always way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
-exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
+# exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 
 
 
@@ -42,3 +45,4 @@ workspace 6 output $output-middle-home $output-middle-office $output-internal
 workspace 7 output $output-right-home $output-right-office $output-internal
 workspace 8 output $output-right-home $output-right-office $output-internal
 workspace 9 output $output-right-home $output-right-office $output-internal
+
