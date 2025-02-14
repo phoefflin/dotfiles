@@ -1,3 +1,6 @@
+# ======================================================
+# see https://starship.rs/config for reference
+# ======================================================
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
@@ -9,7 +12,6 @@ format = ''
 # format = '([\[$all_status$ahead_behind\]]($style))'
 format = "[$branch]($style)"
 style = "bright-black"
-
 
 [git_status]
 format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"

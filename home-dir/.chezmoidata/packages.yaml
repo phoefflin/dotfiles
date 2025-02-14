@@ -75,6 +75,7 @@ packages:
     - zsh
   sway:
     - brightnessctl
+    - clipman
     - gammastep
     - grim
     - grimshot-bin-sway
