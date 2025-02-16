@@ -53,7 +53,7 @@
     "spacing": 10,
   },
   "clock": {
-    "timezone": "Europr/Berlin",
+    "timezone": "Europe/Berlin",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": "{:%Y-%m-%d}",
   },
@@ -62,7 +62,8 @@
     "on-click": "ghostty -e htop",
   },
   "memory": {
-    "format": "mem: {}% , swap: {swapPercentage}%",
+    "format": "{}%/{swapPercentage}%  ",
+    "tooltip-format": "Memory: {used} / {total} ({percentage}%)\nSwap: {swapUsed} / {swapTotal} ({swapPercentage}%)",
     // "format": "{used:0.1f}G/{total:0.1f}G ",
   },
   // "temperature": {
@@ -118,8 +119,8 @@
   // },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
-    "format": "{volume}% {icon} {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format": "{volume}% {icon}    {format_source}",
+    "format-bluetooth": "{volume}% {icon}  {format_source}",
     "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": " {format_source}",
     "format-source": "{volume}% ",
