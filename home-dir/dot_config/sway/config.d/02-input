@@ -10,8 +10,11 @@ input type:touchpad {
 
 # Read `man 5 sway-input` for more information about this section.
 # fall back to us
-input type:keyboard xkb_layout "us"
-input type:keyboard xkb_variant "altgr-intl"
+input type:keyboard {
+    xkb_layout "us,de"
+    xkb_variant "altgr-intl,nodeadkeys"
+    # xkb_options "grp:alt_shift_toggle"
+}
 
 # get keyboard settings from current locale settings
 # exec_always {

@@ -36,7 +36,7 @@
   },
   "sway/language": {
     // "format": "{}",
-    // "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+    "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
     "format": "{short}",
     "tooltip-format": "{long}",
   },
