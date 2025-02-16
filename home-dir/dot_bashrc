@@ -15,7 +15,8 @@ alias grep='grep --color=auto'
 # set default editor
 export EDITOR=nvim
 export PAGER=less
-export BROWSER=chromium
+export BROWSER=brave
+export CDPATH=.:~/Devel
 
 # set _bashrc_debug to true to get more debuging output:
 # _bashrc_debug=true

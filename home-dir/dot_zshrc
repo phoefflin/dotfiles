@@ -33,7 +33,8 @@ alias grep='grep --color=auto'
 # set default editor
 export EDITOR=nvim
 export PAGER=less
-export BROWSER=chromium
+export BROWSER=brave
+export CDPATH=.:~/Devel
 
 # source all *.zsh files in .shellrc.d in alphanumerical order
 if [ -d ~/.shellrc.d ]; then
