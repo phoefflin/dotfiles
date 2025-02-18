@@ -9,8 +9,7 @@ set $right l
 
 # Your preferred terminal emulators
 set $term ghostty
-set $browser chromium
-set $mailer thunderbird
+set $browser brave
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -240,7 +239,6 @@ bindsym --whole-window --border $mod+shift+button5 resize grow width 5 px or 5 p
 #
 # App shortcuts
 #
-    bindsym $mod+m exec $mailer
     bindsym $mod+o exec $browser
     # open file/url from clipboard
     bindsym $mod+Shift+o exec xdg-open $(wl-paste)

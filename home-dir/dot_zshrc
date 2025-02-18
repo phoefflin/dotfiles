@@ -19,6 +19,14 @@ compinit
 # autocomplete
 setopt NO_BEEP NO_AUTOLIST BASH_AUTOLIST NO_MENUCOMPLETE
 
+
+# add current directory to temp file for say term to pick it up, see ~/.config/sway/scripts/terminal-wrapper.sh
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd save_cwd
+save_cwd() {
+    pwd > "/dev/shm/terminal-cwd.$USER"
+}
+
 # Motion
 bindkey '^[[1;5C' forward-word  # Ctrl + Right Arrow
 bindkey '^[[1;5D' backward-word # Ctrl + Left Arrow

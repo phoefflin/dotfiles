@@ -13,7 +13,7 @@ packages:
     - brave-bin
     - browserpass-chromium
     - chromium
-    # editor
+    - cursor-bin # cursor editor
     - dmenu
     # - fprintd # fingerprintreader 0a5c:5843 currently not suppoerted: https://fprint.freedesktop.org/supported-devices.html
     - fwupd
@@ -23,6 +23,7 @@ packages:
     - hunspell
     - hunspell-de
     - imagemagick
+    - inetutils
     - less
     - linux-firmware
     - linux-zen
@@ -53,6 +54,7 @@ packages:
     - ttf-droid
     - ttf-fira-mono
     - ttf-freefont
+    - ttf-hack-nerd
     - ttf-inconsolata
     - ttf-jetbrains-mono-nerd
     - ttf-liberation
@@ -88,6 +90,7 @@ packages:
     - sway
     - swaybg
     - sway-contrib
+    - swayhide
     - swayidle
     - swaylock
     - waybar
@@ -95,4 +98,13 @@ packages:
     - wl-clipboard
     - wdisplays
     - wofi
+    # GTK/QT Themes
+    - gtk3
+    - gtk4
+    - lxappearance
+    # - kvantum ' KDE
+    # - qt5ct
+    - gnome-themes-extra
+    - nordic-theme
+
 
