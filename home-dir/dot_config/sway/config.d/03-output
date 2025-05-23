@@ -10,15 +10,18 @@
 #   input "1386:884:Wacom_Intuos_S_Pad" map_to_output HDMI-A-1
 #   input "1386:884:Wacom_Intuos_S_Pen" map_to_output HDMI-A-1
 #
+#
+# debug with: 'pkill kanshi && kanshi'
+exec kanshi
 
 # output layout (left+right+internal)
 set $output-internal eDP-1
 set $output-left eDP-1
-set $output-middle-home DP-3
-set $output-right-home DP-4
-# set $output-middle-office DP2-1
-set $output-middle-office DP-1
-set $output-right-office DP-2
+set $output-middle-home "Dell Inc. DELL P2722H 1QZBDJ3"
+set $output-right-home "Dell Inc. DELL P2317H 9KFDW8661YKS"
+set $output-middle-office "Dell Inc. DELL C3422WE 48FQ0P3"
+set $output-right-office $output-internal
+set $output-extra DP-1
 
 # bindswitch --reload --locked lid:on output $output-internal disable
 # bindswitch --reload --locked lid:off output $output-internal enable
@@ -28,18 +31,13 @@ set $output-right-office DP-2
 # output $output-middle-home resolution 1920x1080 position 1920,0 scale 1
 # output $output-right-home resolution 1920x1080 position 3840,0 scale 1
 
-# display management
-# debug with: 'pkill kanshi && kanshi'
-exec kanshi
-
-
 workspace 1 output $output-left $output-internal
 workspace 2 output $output-left $output-internal
-workspace 3 output $output-middle-home $output-middle-office $output-internal
-workspace 4 output $output-middle-home $output-middle-office $output-internal
-workspace 5 output $output-middle-home $output-middle-office $output-internal
-workspace 6 output $output-middle-home $output-middle-office $output-internal
-workspace 7 output $output-right-home $output-right-office $output-internal
-workspace 8 output $output-right-home $output-right-office $output-internal
-workspace 9 output $output-right-home $output-right-office $output-internal
+workspace 3 output $output-middle-home $output-middle-office $output-extra $output-internal
+workspace 4 output $output-middle-home $output-middle-office $output-extra $output-internal
+workspace 5 output $output-middle-home $output-middle-office $output-extra $output-internal
+workspace 6 output $output-middle-home $output-middle-office $output-extra $output-internal
+workspace 7 output $output-right-home $output-right-office $output-extra $output-internal
+workspace 8 output $output-right-home $output-right-office $output-extra $output-internal
+workspace 9 output $output-right-home $output-right-office $output-extra $output-internal
 

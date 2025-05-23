@@ -3,15 +3,23 @@ packages:
   base:
     - alacritty
     - aspell
+    - aws-cli-v2
+    - aws-sam-cli-bin
+    - python-prompt-toolkit
     - aspell-en
     - base-devel
     - bash
     - bash-completion
     - bat
+    - bluez
+    - bluez-utils
+    - blueman
+    - cpupower
     - docker
     - docker-buildx
     - brave-bin
     - browserpass-chromium
+    - browserpass-firefox
     - chromium
     - cursor-bin # cursor editor
     - dmenu
@@ -75,6 +83,11 @@ packages:
     - xclip
     - zed
     - zsh
+    # android
+    - android-tools
+    - android-udev 
+    - prettierd
+    - eslint_d
   sway:
     - brightnessctl
     - clipman

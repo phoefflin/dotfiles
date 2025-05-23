@@ -28,6 +28,19 @@
 # Display window as floating. Find out wayland app_id with "swaymsg -t get_tree | jq '.' | grep app_id" and xorg class with xprop
 for_window [window_role = "pop-up"] floating enable
 set $float_resize resize set width 80 ppt height 85 ppt
+
+
+# Microsoft teams PWA an brave does have pop-up
+# swaymsg -t get_tree - output:
+#    #6: workspace "1"
+      #7: floating_con "Microsoft Teams - (1) Calendar | KCM Daily | Microsoft Teams" (xwayland, pid: 2799, instance: "crx_cifhbcnohmdccbgoicgdjpfamggdegmo", class: "Brave-browser", X11 window: 0x400004)
+# The macic instance id is the Chrome/Brave extension ID for Microsoft Teams when installed as a Progressive Web App (PWA).
+# for_window [instance="crx_cifhbcnohmdccbgoicgdjpfamggdegmo"] floating disable
+for_window [class="Brave-browser" title="Microsoft Teams*"] floating disable
+
+
+
+
 # set floating (nontiling)for apps needing it:
 for_window [title="waybarterm:.*" ] floating enable, $float_resize
 # qutebrowser editor sessios (see qutebrowser config)

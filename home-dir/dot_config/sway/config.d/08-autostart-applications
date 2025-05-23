@@ -12,6 +12,8 @@ exec /usr/bin/gammastep-indicator -l 47.9959:7.85222 -m wayland -t 6500:4700
 
 exec wl-paste -t text --watch clipman store --no-persist
 
+exec /usr/bin/blueman-applet
+
 # exec autotiling
 
 # exec  python3 ~/.config/sway/scripts/swayfader.py

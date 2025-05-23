@@ -1,0 +1,18 @@
+# Docked mode (external monitor connected)
+profile docked_office {
+    output eDP-1 enable mode 1920x1080 position 0,360 scale 1
+    output "Dell Inc. DELL C3422WE 48FQ0P3" enable mode 3440x1440 position 1920,0 scale 1
+}
+
+profile docked_home {
+    output eDP-1 enable mode 1920x1080 position 0,0 scale 1
+    output "Dell Inc. DELL P2722H 1QZBDJ3" enable mode 1920x1080 position 1920,0 scale 1
+    output "Dell Inc. DELL P2317H 9KFDW8661YKS" enable mode 1920x1080 position 3840,0 scale 1
+}
+
+
+# Undocked mode (only laptop screen)
+profile undocked {
+    output eDP-1 enable mode 1920x1080 position 0,0 scale 1
+}
+

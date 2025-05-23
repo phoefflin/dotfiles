@@ -1,6 +1,11 @@
 [Default]
 save_dir=$HOME/Pictures/Screenshots
-line_size=5
+line_size=3
 text_size=20
 text_font=sans-serif
+show_panel=false
+paint_mode=rectangle
 save_filename_format=swappy-%Y%m%d-%H%M%S.png
+early_exit=true
+custom_color=rgba(1,1,17,1)
+

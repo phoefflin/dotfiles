@@ -46,6 +46,7 @@
       "activated": "",
       "deactivated": "",
     },
+    // "on-click": "swaymsg 'inhibit_idle toggle'; if swaymsg -t get_tree | grep -q 'idle_inhibit':\"1\"; then makoctl set-mode dnd; else makoctl restore-mode; fi",
     "tooltip-format-activated": "presentation mode {status}",
     "tooltip-format-deactivated": "presentation mode {status}",
   },
